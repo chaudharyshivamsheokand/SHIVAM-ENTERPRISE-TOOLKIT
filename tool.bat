@@ -160,7 +160,7 @@ for /f "tokens=1" %%a in ('time /t') do set "SYSTIME=%%a"
 echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
 echo  ║  SHIVAM ENTERPRISE TOOLKIT  ^|  Dev: चौधरी शिवम श्योकंद  ^|  GitHub: github.com/chaudharyshivamsheokand  ^|  YT: TechEdu-X  ^|  IG: @ig.developershivam  ║
 echo  ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  User: %USERNAME%   ^|  PC: %COMPUTERNAME%   ^|  Date: %date%   ^|  Time: %time%                                                                       
+echo  ║  User: %USERNAME%   ^|  PC: %COMPUTERNAME%   ^|  Date: %date%   ^|  Time: %time%
 echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
 echo.
 goto :eof
@@ -220,7 +220,7 @@ goto REPAIR_MENU
 cls
 echo  [*] Scheduling chkdsk on C: drive (runs on next reboot)...
 echo  [%date% %time%] chkdsk scheduled >> "%LOGFILE%"
-echo Y | chkdsk C: /f /r /x
+echo Y | chkdsk C: /f /r
 echo  [+] chkdsk scheduled for next reboot.
 pause
 goto REPAIR_MENU
@@ -485,7 +485,7 @@ goto GAMING_MENU
 cls
 echo  [*] Enabling Ultimate Performance power plan...
 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
-powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61
+powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
 echo  [+] Ultimate Performance mode activated.
 echo  [%date% %time%] Ultimate Performance enabled >> "%LOGFILE%"
 pause
@@ -759,7 +759,9 @@ goto BACKUP_MENU
 :BACKUP_REG
 cls
 echo  [*] Backing up registry HKLM...
-set "REGBACK=%BACKUPDIR%\Registry_HKLM_%date:~-4%%date:~3,2%%date:~0,2%.reg"
+set "REGBACK=%BACKUPDIR%\Registry_HKLM_%date:~-4,4%%date:~-7,2%%date:~-10,2%.reg"
+set "REGBACK=!REGBACK: =0!"
+set "REGBACK=!REGBACK:/=-!"
 reg export HKLM "!REGBACK!" /y
 echo  [+] Registry exported to: !REGBACK!
 echo  [%date% %time%] Registry backup done >> "%LOGFILE%"
@@ -1075,8 +1077,9 @@ goto AI_DIAG_MENU
 
 :DIAG_FULL
 cls
-set "RPTFILE=%REPORTDIR%\FullSystemReport_%date:~-4%%date:~3,2%%date:~0,2%_%time:~0,2%%time:~3,2%%time:~6,2%.txt"
+set "RPTFILE=%REPORTDIR%\FullSystemReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
 set "RPTFILE=!RPTFILE: =0!"
+set "RPTFILE=!RPTFILE:/=-!"
 echo  [*] Generating Full System Report...
 (
 echo ============================================================
@@ -1116,7 +1119,9 @@ goto AI_DIAG_MENU
 
 :DIAG_TASK
 cls
-set "RPTFILE=%REPORTDIR%\TaskReport_%date:~-4%%date:~3,2%%date:~0,2%.txt"
+set "RPTFILE=%REPORTDIR%\TaskReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
+set "RPTFILE=!RPTFILE: =0!"
+set "RPTFILE=!RPTFILE:/=-!"
 echo  [*] Generating Task/Process Report...
 (
 echo ============================================================
@@ -1136,7 +1141,9 @@ goto AI_DIAG_MENU
 
 :DIAG_NET
 cls
-set "RPTFILE=%REPORTDIR%\NetworkReport_%date:~-4%%date:~3,2%%date:~0,2%.txt"
+set "RPTFILE=%REPORTDIR%\NetworkReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
+set "RPTFILE=!RPTFILE: =0!"
+set "RPTFILE=!RPTFILE:/=-!"
 echo  [*] Generating Network Report...
 (
 echo ============================================================
@@ -1166,7 +1173,9 @@ goto AI_DIAG_MENU
 
 :DIAG_HW
 cls
-set "RPTFILE=%REPORTDIR%\HardwareReport_%date:~-4%%date:~3,2%%date:~0,2%.txt"
+set "RPTFILE=%REPORTDIR%\HardwareReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
+set "RPTFILE=!RPTFILE: =0!"
+set "RPTFILE=!RPTFILE:/=-!"
 echo  [*] Generating Hardware Report...
 (
 echo ============================================================
@@ -1368,7 +1377,7 @@ goto ADVANCED_MENU
 cls
 echo  [*] Listing and managing startup programs...
 echo  [*] Opening Task Manager Startup tab...
-start taskmgr /0 /startup
+start taskmgr
 echo  [+] Disable unwanted startup apps in Task Manager.
 echo  [%date% %time%] Startup manager opened >> "%LOGFILE%"
 pause
@@ -1382,7 +1391,9 @@ set "SCANDIR=%USERPROFILE%\Desktop"
 set /p "SCANDIR=  Enter folder to scan [default: %USERPROFILE%\Desktop]: "
 if "!SCANDIR!"=="" set "SCANDIR=%USERPROFILE%\Desktop"
 echo  [*] Scanning: !SCANDIR!
-set "RPTFILE=%REPORTDIR%\DuplicateScan_%date:~-4%%date:~3,2%%date:~0,2%.txt"
+set "RPTFILE=%REPORTDIR%\DuplicateScan_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
+set "RPTFILE=!RPTFILE: =0!"
+set "RPTFILE=!RPTFILE:/=-!"
 echo Duplicate File Report - !SCANDIR! > "!RPTFILE!"
 echo Generated: %date% %time% >> "!RPTFILE!"
 echo. >> "!RPTFILE!"
