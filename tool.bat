@@ -45,26 +45,15 @@ echo [%date% %time%] SHIVAM ENTERPRISE TOOLKIT Started >> "%LOGFILE%"
 cls
 color 0A
 echo.
-echo  ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-echo  █                                                                                                                                                          █
-echo  █    ███████╗██╗  ██╗██╗██╗   ██╗ █████╗ ███╗   ███╗    ███████╗███╗   ██╗████████╗███████╗██████╗ ██████╗ ██████╗ ██╗███████╗███████╗                   █
-echo  █    ██╔════╝██║  ██║██║██║   ██║██╔══██╗████╗ ████║    ██╔════╝████╗  ██║╚══██╔══╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██║██╔════╝██╔════╝                   █
-echo  █    ███████╗███████║██║██║   ██║███████║██╔████╔██║    █████╗  ██╔██╗ ██║   ██║   █████╗  ██████╔╝██████╔╝██████╔╝██║███████╗█████╗                     █
-echo  █    ╚════██║██╔══██║██║╚██╗ ██╔╝██╔══██║██║╚██╔╝██║    ██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  ██╔══██╗██╔═══╝ ██╔══██╗██║╚════██║██╔══╝                    █
-echo  █    ███████║██║  ██║██║ ╚████╔╝ ██║  ██║██║ ╚═╝ ██║    ███████╗██║ ╚████║   ██║   ███████╗██║  ██║██║     ██║  ██║██║███████║███████╗                   █
-echo  █    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝     ╚═╝    ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝                   █
-echo  █                                                                                                                                                          █
-echo  █                        ████████╗ ██████╗  ██████╗ ██╗     ██╗  ██╗██╗████████╗                                                                         █
-echo  █                           ██╔══╝██╔═══██╗██╔═══██╗██║     ██║ ██╔╝██║╚══██╔══╝                                                                         █
-echo  █                           ██║   ██║   ██║██║   ██║██║     █████╔╝ ██║   ██║                                                                             █
-echo  █                           ██║   ██║   ██║██║   ██║██║     ██╔═██╗ ██║   ██║                                                                             █
-echo  █                           ██║   ╚██████╔╝╚██████╔╝███████╗██║  ██╗██║   ██║                                                                             █
-echo  █                           ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝                                                                             █
-echo  █                                                                                                                                                          █
-echo  █                          ENTERPRISE TECHNICIAN SUITE  v3.0                                                                                              █
-echo  █                Developer: चौधरी शिवम श्योकंद  ^|  GitHub: github.com/chaudharyshivamsheokand                                                            █
-echo  █                Instagram: @ig.developershivam  ^|  YouTube: TechEdu-X                                                                                   █
-echo  ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
+echo  ================================================================================
+echo  =                    SHIVAM ENTERPRISE TOOLKIT v3.0                          =
+echo  =                    ENTERPRISE TECHNICIAN SUITE                              =
+echo  =                                                                             =
+echo  =  Developer: Chaudhary Shivam Sheokand                                      =
+echo  =  GitHub: github.com/chaudharyshivamsheokand                                =
+echo  =  Instagram: @ig.developershivam                                            =
+echo  =  YouTube: TechEdu-X                                                        =
+echo  ================================================================================
 echo.
 echo                                             [ Initializing Enterprise Modules... ]
 timeout /t 2 >nul
@@ -81,18 +70,18 @@ goto MAIN_MENU
 cls
 color 0A
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                          ★  MAIN MENU  ★  PAGE 1 OF 2                                                                                ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [01]  AUTO REPAIR TOOLKIT                           ║  [07]  SECURITY TOOLKIT                                                                       ║
-echo  ║  [02]  DEEP CLEANER                                  ║  [08]  BACKUP TOOLKIT                                                                         ║
-echo  ║  [03]  DRIVER TOOLKIT                                ║  [09]  HARDWARE TOOLKIT                                                                        ║
-echo  ║  [04]  GAMING TOOLKIT                                ║  [10]  WINDOWS MANAGEMENT                                                                      ║
-echo  ║  [05]  NETWORK TOOLKIT                               ║  [11]  APP INSTALLER TOOLKIT                                                                   ║
-echo  ║  [06]  DISM TOOLKIT                                  ║  [12]  MORE TOOLS ^(Page 2^)                                                                   ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [N] Next Page   [X] Exit Toolkit                                                                                                                     ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                              *** MAIN MENU *** PAGE 1 OF 2
+echo  ==============================================================================================
+echo   [01]  AUTO REPAIR TOOLKIT                   [07]  SECURITY TOOLKIT
+echo   [02]  DEEP CLEANER                          [08]  BACKUP TOOLKIT
+echo   [03]  DRIVER TOOLKIT                        [09]  HARDWARE TOOLKIT
+echo   [04]  GAMING TOOLKIT                        [10]  WINDOWS MANAGEMENT
+echo   [05]  NETWORK TOOLKIT                       [11]  APP INSTALLER TOOLKIT
+echo   [06]  DISM TOOLKIT                          [12]  MORE TOOLS (Page 2)
+echo  ==============================================================================================
+echo   [N] Next Page   [X] Exit Toolkit
+echo  ==============================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if /i "!CHOICE!"=="01" goto REPAIR_MENU
@@ -124,16 +113,16 @@ goto MAIN_MENU
 cls
 color 0A
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                          ★  MAIN MENU  ★  PAGE 2 OF 2                                                                                ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [13]  WINPE TOOLKIT                                 ║  [17]  ADVANCED TOOLS                                                                         ║
-echo  ║  [14]  AI DIAGNOSTICS                                ║  [18]  BATTERY REPORT                                                                         ║
-echo  ║  [15]  SSD OPTIMIZER                                 ║  [19]  BENCHMARK TOOLKIT                                                                       ║
-echo  ║  [16]  PRIVACY TOOLKIT                               ║  [20]  FIREWALL TOOLKIT                                                                        ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [B] Back (Page 1)   [H] Home   [X] Exit Toolkit                                                                                                      ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                              *** MAIN MENU *** PAGE 2 OF 2
+echo  ==============================================================================================
+echo   [13]  WINPE TOOLKIT                         [17]  ADVANCED TOOLS
+echo   [14]  AI DIAGNOSTICS                        [18]  BATTERY REPORT
+echo   [15]  SSD OPTIMIZER                         [19]  BENCHMARK TOOLKIT
+echo   [16]  PRIVACY TOOLKIT                       [20]  FIREWALL TOOLKIT
+echo  ==============================================================================================
+echo   [B] Back (Page 1)   [H] Home   [X] Exit Toolkit
+echo  ==============================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if /i "!CHOICE!"=="13" goto WINPE_MENU
@@ -155,11 +144,13 @@ goto MAIN_MENU2
 :DRAW_HEADER
 for /f "tokens=1-2 delims= " %%a in ('date /t') do set "SYSDATE=%%a %%b"
 for /f "tokens=1" %%a in ('time /t') do set "SYSTIME=%%a"
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║  SHIVAM ENTERPRISE TOOLKIT  ^|  Dev: चौधरी शिवम श्योकंद  ^|  GitHub: github.com/chaudharyshivamsheokand  ^|  YT: TechEdu-X  ^|  IG: @ig.developershivam  ║
-echo  ╠══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  User: %USERNAME%   ^|  PC: %COMPUTERNAME%   ^|  Date: %date%   ^|  Time: %time%
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================
+echo   SHIVAM ENTERPRISE TOOLKIT ^| Dev: Chaudhary Shivam Sheokand
+echo   GitHub: github.com/chaudharyshivamsheokand ^| YT: TechEdu-X
+echo   IG: @ig.developershivam
+echo  ==============================================================================
+echo   User: %USERNAME% ^| PC: %COMPUTERNAME% ^| Date: %date% ^| Time: %time%
+echo  ==============================================================================
 echo.
 goto :eof
 
@@ -170,15 +161,14 @@ goto :eof
 cls
 color 0B
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  AUTO REPAIR TOOLKIT  ★                                                                                     ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  SFC /scannow (System File Checker)             ║  [4]  Winsock Reset                                                                           ║
-echo  ║  [2]  DISM RestoreHealth                             ║  [5]  TCP/IP Reset                                                                            ║
-echo  ║  [3]  Check Disk (chkdsk C:)                         ║  [6]  DNS Flush                                                                               ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                              *** AUTO REPAIR TOOLKIT ***
+echo  ==============================================================================================
+echo   [1]  SFC /scannow (System File Checker)   [4]  Winsock Reset
+echo   [2]  DISM RestoreHealth                   [5]  TCP/IP Reset
+echo   [3]  Check Disk (chkdsk C:)               [6]  DNS Flush
+echo  ==============================================================================================
+echo   [H] Home   [B] Back   [X] Exit
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto REPAIR_SFC
@@ -257,16 +247,15 @@ goto REPAIR_MENU
 cls
 color 0C
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  DEEP CLEANER  ★                                                                                            ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  User Temp Cleanup (%TEMP%)                      ║  [4]  Recycle Bin Cleanup                                                                     ║
-echo  ║  [2]  Windows Temp Cleanup (C:\Windows\Temp)          ║  [5]  Browser Cache Cleanup                                                                   ║
-echo  ║  [3]  Prefetch Cleanup                               ║  [6]  Windows Update Cache Cleanup                                                             ║
-echo  ║  [7]  Run All Cleaners                               ║                                                                                               ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                                 *** DEEP CLEANER ***
+echo  ==============================================================================================
+echo   [1]  User Temp Cleanup (%TEMP%)         [4]  Recycle Bin Cleanup
+echo   [2]  Windows Temp Cleanup (C:\Windows\Temp)  [5]  Browser Cache Cleanup
+echo   [3]  Prefetch Cleanup                   [6]  Windows Update Cache Cleanup
+echo   [7]  Run All Cleaners
+echo  ==============================================================================================
+echo   [H] Home   [B] Back   [X] Exit
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto CLEAN_USERTEMP
@@ -395,14 +384,13 @@ goto :eof
 cls
 color 0D
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  DRIVER TOOLKIT  ★                                                                                          ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Install Driver (pnputil)                       ║  [3]  Scan for Hardware Changes                                                               ║
-echo  ║  [2]  Export All Drivers                             ║  [4]  Open Device Manager                                                                     ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                                 *** DRIVER TOOLKIT ***
+echo  ==============================================================================================
+echo   [1]  Install Driver (pnputil)        [3]  Scan for Hardware Changes
+echo   [2]  Export All Drivers               [4]  Open Device Manager
+echo  ==============================================================================================
+echo   [H] Home   [B] Back   [X] Exit
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto DRIVER_INSTALL
@@ -460,14 +448,13 @@ goto DRIVER_MENU
 cls
 color 0E
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  GAMING TOOLKIT  ★                                                                                          ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Enable Ultimate Performance Mode               ║  [3]  Enable GPU Scheduling (WDDM 2.7+)                                                       ║
-echo  ║  [2]  Disable Game DVR / Xbox DVR                   ║  [4]  Apply Network Gaming Tweaks                                                             ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                                 *** GAMING TOOLKIT ***
+echo  ==============================================================================================
+echo   [1]  Enable Ultimate Performance Mode     [3]  Enable GPU Scheduling (WDDM 2.7+)
+echo   [2]  Disable Game DVR / Xbox DVR        [4]  Apply Network Gaming Tweaks
+echo  ==============================================================================================
+echo   [H] Home   [B] Back   [X] Exit
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto GAMING_PERF
@@ -533,15 +520,14 @@ goto GAMING_MENU
 cls
 color 09
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  NETWORK TOOLKIT  ★                                                                                         ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Winsock Reset                                  ║  [4]  Renew IP Address                                                                        ║
-echo  ║  [2]  IP Stack Reset                                 ║  [5]  Wi-Fi Repair                                                                            ║
-echo  ║  [3]  DNS Optimization (Google DNS)                  ║  [6]  Show Network Info                                                                       ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                                 *** NETWORK TOOLKIT ***
+echo  ==============================================================================================
+echo   [1]  Winsock Reset                      [4]  Renew IP Address
+echo   [2]  IP Stack Reset                     [5]  Wi-Fi Repair
+echo   [3]  DNS Optimization (Google DNS)     [6]  Show Network Info
+echo  ==============================================================================================
+echo   [H] Home   [B] Back   [X] Exit
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto NET_WINSOCK
@@ -578,11 +564,13 @@ goto NETWORK_MENU
 :NET_DNS
 cls
 echo  [*] Setting DNS to Google (8.8.8.8 / 8.8.4.4)...
-for /f "tokens=3*" %%a in ('netsh interface show interface ^| findstr /i "connected"') do (
-    netsh interface ip set dns name="%%b" static 8.8.8.8 >nul 2>&1
-    netsh interface ip add dns name="%%b" 8.8.4.4 index=2 >nul 2>&1
+for /f "skip=3 tokens=1,2,3,4,5,6" %%a in ('netsh interface ip show config') do (
+    if not "%%a"=="" (
+        netsh interface ip set dns name="%%a" static 8.8.8.8 >nul 2>&1
+        netsh interface ip add dns name="%%a" 8.8.4.4 index=2 >nul 2>&1
+    )
 )
-ipconfig /flushdns
+ipconfig /flushdns >nul 2>&1
 echo  [+] DNS set to Google. DNS cache flushed.
 echo  [%date% %time%] DNS set to Google >> "%LOGFILE%"
 pause
@@ -628,14 +616,13 @@ goto NETWORK_MENU
 cls
 color 06
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  DISM TOOLKIT  ★                                                                                            ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  DISM CheckHealth                               ║  [3]  DISM RestoreHealth                                                                      ║
-echo  ║  [2]  DISM ScanHealth                                ║                                                                                               ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ==============================================================================================
+echo                                 *** DISM TOOLKIT ***
+echo  ==============================================================================================
+echo   [1]  DISM CheckHealth               [3]  DISM RestoreHealth
+echo   [2]  DISM ScanHealth
+echo  ==============================================================================================
+echo   [H] Home   [B] Back   [X] Exit
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto DISM_CHECK
@@ -1243,7 +1230,8 @@ goto SSD_MENU
 :SSD_OPTIMIZE
 cls
 echo  [*] Optimizing all drives...
-defrag /C /O /U /V
+defrag C: /O >nul 2>&1
+echo  [+] Drive optimization done.
 echo  [%date% %time%] Drive optimization done >> "%LOGFILE%"
 pause
 goto SSD_MENU
@@ -1447,11 +1435,13 @@ goto DNS_TOOLKIT
 :DNS_GOOGLE
 cls
 echo  [*] Setting DNS to Google...
-for /f "tokens=3*" %%a in ('netsh interface show interface ^| findstr /i "connected"') do (
-    netsh interface ip set dns name="%%b" static 8.8.8.8 >nul 2>&1
-    netsh interface ip add dns name="%%b" 8.8.4.4 index=2 >nul 2>&1
+for /f "skip=3 tokens=1,2,3,4,5,6" %%a in ('netsh interface ip show config') do (
+    if not "%%a"=="" (
+        netsh interface ip set dns name="%%a" static 8.8.8.8 >nul 2>&1
+        netsh interface ip add dns name="%%a" 8.8.4.4 index=2 >nul 2>&1
+    )
 )
-ipconfig /flushdns
+ipconfig /flushdns >nul 2>&1
 echo  [+] DNS set to Google.
 echo  [%date% %time%] DNS set to Google >> "%LOGFILE%"
 pause
@@ -1460,11 +1450,13 @@ goto DNS_TOOLKIT
 :DNS_CF
 cls
 echo  [*] Setting DNS to Cloudflare...
-for /f "tokens=3*" %%a in ('netsh interface show interface ^| findstr /i "connected"') do (
-    netsh interface ip set dns name="%%b" static 1.1.1.1 >nul 2>&1
-    netsh interface ip add dns name="%%b" 1.0.0.1 index=2 >nul 2>&1
+for /f "skip=3 tokens=1,2,3,4,5,6" %%a in ('netsh interface ip show config') do (
+    if not "%%a"=="" (
+        netsh interface ip set dns name="%%a" static 1.1.1.1 >nul 2>&1
+        netsh interface ip add dns name="%%a" 1.0.0.1 index=2 >nul 2>&1
+    )
 )
-ipconfig /flushdns
+ipconfig /flushdns >nul 2>&1
 echo  [+] DNS set to Cloudflare.
 echo  [%date% %time%] DNS set to Cloudflare >> "%LOGFILE%"
 pause
@@ -1673,19 +1665,17 @@ goto FIREWALL_MENU
 cls
 color 0A
 echo.
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                                                                                                                                       ║
-echo  ║   Thank you for using SHIVAM ENTERPRISE TOOLKIT                                                                                                       ║
-echo  ║   Developer: चौधरी शिवम श्योकंद                                                                                                                       ║
-echo  ║   GitHub  :  github.com/chaudharyshivamsheokand                                                                                                       ║
-echo  ║   Instagram:  @ig.developershivam                                                                                                                      ║
-echo  ║   YouTube  :  TechEdu-X                                                                                                                               ║
-echo  ║                                                                                                                                                       ║
-echo  ║   Logs saved to: %LOGFILE%
-echo  ║   Reports at  : %REPORTDIR%
-echo  ║   Backups at  : %BACKUPDIR%
-echo  ║                                                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo  ======================================================================
+echo   Thank you for using SHIVAM ENTERPRISE TOOLKIT
+echo   Developer: Chaudhary Shivam Sheokand
+echo   GitHub  :  github.com/chaudharyshivamsheokand
+echo   Instagram:  @ig.developershivam
+echo   YouTube  :  TechEdu-X
+echo  .
+echo   Logs saved to: %LOGFILE%
+echo   Reports at  : %REPORTDIR%
+echo   Backups at  : %BACKUPDIR%
+echo  ======================================================================
 echo.
 echo  [%date% %time%] SHIVAM ENTERPRISE TOOLKIT Exited >> "%LOGFILE%"
 timeout /t 3 >nul
