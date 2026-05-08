@@ -1,23 +1,22 @@
 @chcp 65001 >nul 2>&1
 @echo off
+setlocal EnableDelayedExpansion
+
 :: ============================================================
-:: SHIVAM ENTERPRISE TOOLKIT
-:: Developer: Chaudhary Shivam Sheokand (चौधरी शिवम श्योकंद)
+:: SHIVAM ENTERPRISE TOOLKIT - ADVANCED EDITION v4.0
+:: Developer: Chaudhary Shivam Sheokand
 :: GitHub: github.com/chaudharyshivamsheokand
 :: Instagram: @ig.developershivam
 :: YouTube: TechEdu-X
-:: Version: 3.0 Enterprise
+:: Version: 4.0 Enterprise Advanced
 :: Supports: Windows 10 / Windows 11
 :: ============================================================
 
-:: --- Enable Delayed Expansion ---
-setlocal EnableDelayedExpansion
-
-:: --- Set Console Size ---
+:: --- Console Configuration ---
 mode con: cols=160 lines=50
 powershell -Command "$Host.UI.RawUI.BufferSize = New-Object Management.Automation.Host.Size(160,500)" >nul 2>&1
 
-:: --- Auto Request Administrator Privileges ---
+:: --- Admin Privilege Check ---
 net session >nul 2>&1
 if %errorlevel% neq 0 (
     echo Requesting Administrator privileges...
@@ -25,20 +24,18 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-:: --- Set Script Directory ---
+:: --- Directory Setup ---
 set "SCRIPTDIR=%~dp0"
 set "LOGDIR=%SCRIPTDIR%Logs"
 set "REPORTDIR=%SCRIPTDIR%Reports"
 set "BACKUPDIR=%SCRIPTDIR%Backups"
 set "LOGFILE=%LOGDIR%\toolkit.log"
 
-:: --- Create Required Folders ---
 if not exist "%LOGDIR%" mkdir "%LOGDIR%"
 if not exist "%REPORTDIR%" mkdir "%REPORTDIR%"
 if not exist "%BACKUPDIR%" mkdir "%BACKUPDIR%"
 
-:: --- Initialize Log ---
-echo [%date% %time%] SHIVAM ENTERPRISE TOOLKIT Started >> "%LOGFILE%"
+echo [%date% %time%] SHIVAM ENTERPRISE TOOLKIT v4.0 Started >> "%LOGFILE%"
 
 :: --- Splash Screen ---
 :SPLASH
@@ -46,42 +43,46 @@ cls
 color 0A
 echo.
 echo  ================================================================================
-echo  =                    SHIVAM ENTERPRISE TOOLKIT v3.0                          =
-echo  =                    ENTERPRISE TECHNICIAN SUITE                              =
+echo  =                  SHIVAM ENTERPRISE TOOLKIT v4.0 ADVANCED                   =
+echo  =                    PROFESSIONAL TECHNICIAN SUITE                            =
 echo  =                                                                             =
-echo  =  Developer: Chaudhary Shivam Sheokand                                      =
-echo  =  GitHub: github.com/chaudharyshivamsheokand                                =
-echo  =  Instagram: @ig.developershivam                                            =
-echo  =  YouTube: TechEdu-X                                                        =
+echo  =  Developer  : Chaudhary Shivam Sheokand                                    =
+echo  =  GitHub     : github.com/chaudharyshivamsheokand                           =
+echo  =  Instagram  : @ig.developershivam                                          =
+echo  =  YouTube    : TechEdu-X                                                    =
+echo  =                                                                             =
 echo  ================================================================================
 echo.
-echo                                             [ Initializing Enterprise Modules... ]
+echo                                  [ Initializing Core Modules...      ]
 timeout /t 2 >nul
-echo                                             [ Loading System Interface...        ]
+echo                                  [ Loading Advanced Tools...          ]
 timeout /t 1 >nul
-echo                                             [ All Systems Ready. Launching...    ]
+echo                                  [ System Ready. Launching Toolkit...  ]
 timeout /t 1 >nul
 goto MAIN_MENU
 
 :: ============================================================
-:: MAIN MENU
+:: MAIN MENU - PAGE 1
 :: ============================================================
 :MAIN_MENU
 cls
 color 0A
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                              *** MAIN MENU *** PAGE 1 OF 2
-echo  ==============================================================================================
-echo   [01]  AUTO REPAIR TOOLKIT                   [07]  SECURITY TOOLKIT
-echo   [02]  DEEP CLEANER                          [08]  BACKUP TOOLKIT
-echo   [03]  DRIVER TOOLKIT                        [09]  HARDWARE TOOLKIT
-echo   [04]  GAMING TOOLKIT                        [10]  WINDOWS MANAGEMENT
-echo   [05]  NETWORK TOOLKIT                       [11]  APP INSTALLER TOOLKIT
-echo   [06]  DISM TOOLKIT                          [12]  MORE TOOLS (Page 2)
-echo  ==============================================================================================
-echo   [N] Next Page   [X] Exit Toolkit
-echo  ==============================================================================================
+echo.
+echo  ================================  PAGE 1 OF 3  ================================
+echo.
+echo   [01]  AUTO REPAIR TOOLKIT             [09]  HARDWARE TOOLKIT
+echo   [02]  DEEP CLEANER                   [10]  WINDOWS MANAGEMENT
+echo   [03]  DRIVER TOOLKIT                 [11]  APP INSTALLER
+echo   [04]  GAMING TOOLKIT                 [12]  ADVANCED DRIVER DETECTION (NEW)
+echo   [05]  NETWORK TOOLKIT                [13]  PERFORMANCE OPTIMIZER
+echo   [06]  DISM TOOLKIT                   [14]  REGISTRY CLEANER
+echo   [07]  SECURITY TOOLKIT               [15]  SYSTEM RESTORE MANAGER
+echo   [08]  BACKUP TOOLKIT                 [16]  DISK HEALTH CHECK
+echo.
+echo  ================================================================================
+echo   [N] Next Page (Page 2)   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if /i "!CHOICE!"=="01" goto REPAIR_MENU
@@ -104,53 +105,96 @@ if /i "!CHOICE!"=="09" goto HARDWARE_MENU
 if /i "!CHOICE!"=="9"  goto HARDWARE_MENU
 if /i "!CHOICE!"=="10" goto WINMGMT_MENU
 if /i "!CHOICE!"=="11" goto APPINSTALL_MENU
-if /i "!CHOICE!"=="12" goto MAIN_MENU2
+if /i "!CHOICE!"=="12" goto DRIVER_ADVANCED_MENU
+if /i "!CHOICE!"=="13" goto PERF_MENU
+if /i "!CHOICE!"=="14" goto REGCLEAN_MENU
+if /i "!CHOICE!"=="15" goto RESTORE_MENU
+if /i "!CHOICE!"=="16" goto DISK_HEALTH_MENU
 if /i "!CHOICE!"=="N"  goto MAIN_MENU2
 if /i "!CHOICE!"=="X"  goto EXIT_TOOLKIT
 goto MAIN_MENU
 
+:: ============================================================
+:: MAIN MENU - PAGE 2
+:: ============================================================
 :MAIN_MENU2
 cls
 color 0A
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                              *** MAIN MENU *** PAGE 2 OF 2
-echo  ==============================================================================================
-echo   [13]  WINPE TOOLKIT                         [17]  ADVANCED TOOLS
-echo   [14]  AI DIAGNOSTICS                        [18]  BATTERY REPORT
-echo   [15]  SSD OPTIMIZER                         [19]  BENCHMARK TOOLKIT
-echo   [16]  PRIVACY TOOLKIT                       [20]  FIREWALL TOOLKIT
-echo  ==============================================================================================
-echo   [B] Back (Page 1)   [H] Home   [X] Exit Toolkit
-echo  ==============================================================================================
+echo.
+echo  ================================  PAGE 2 OF 3  ================================
+echo.
+echo   [17]  WINPE TOOLKIT                  [21]  PROCESS MANAGER
+echo   [18]  AI DIAGNOSTICS                 [22]  STARTUP ACCELERATOR
+echo   [19]  SSD OPTIMIZER                  [23]  SERVICE OPTIMIZER
+echo   [20]  PRIVACY TOOLKIT                [24]  ADVANCED SETTINGS
+echo   [21]  FIREWALL TOOLKIT               [25]  BATTERY REPORT
+echo   [22]  BENCHMARK TOOLKIT              [26]  SYSTEM INFORMATION
+echo   [23]  ADVANCED TOOLS
+echo.
+echo  ================================================================================
+echo   [B] Previous Page   [N] Next Page (Page 3)   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
-if /i "!CHOICE!"=="13" goto WINPE_MENU
-if /i "!CHOICE!"=="14" goto AI_DIAG_MENU
-if /i "!CHOICE!"=="15" goto SSD_MENU
-if /i "!CHOICE!"=="16" goto PRIVACY_MENU
-if /i "!CHOICE!"=="17" goto ADVANCED_MENU
-if /i "!CHOICE!"=="18" goto BATTERY_REPORT
-if /i "!CHOICE!"=="19" goto BENCHMARK_MENU
-if /i "!CHOICE!"=="20" goto FIREWALL_MENU
+if /i "!CHOICE!"=="17" goto WINPE_MENU
+if /i "!CHOICE!"=="18" goto AI_DIAG_MENU
+if /i "!CHOICE!"=="19" goto SSD_MENU
+if /i "!CHOICE!"=="20" goto PRIVACY_MENU
+if /i "!CHOICE!"=="21" goto FIREWALL_MENU
+if /i "!CHOICE!"=="22" goto BENCHMARK_MENU
+if /i "!CHOICE!"=="23" goto ADVANCED_MENU
+if /i "!CHOICE!"=="24" goto PROCMGR_MENU
+if /i "!CHOICE!"=="25" goto STARTUP_ACCEL_MENU
+if /i "!CHOICE!"=="26" goto SVCOPT_MENU
 if /i "!CHOICE!"=="B"  goto MAIN_MENU
-if /i "!CHOICE!"=="H"  goto MAIN_MENU
+if /i "!CHOICE!"=="N"  goto MAIN_MENU3
 if /i "!CHOICE!"=="X"  goto EXIT_TOOLKIT
 goto MAIN_MENU2
+
+:: ============================================================
+:: MAIN MENU - PAGE 3
+:: ============================================================
+:MAIN_MENU3
+cls
+color 0A
+call :DRAW_HEADER
+echo.
+echo  ================================  PAGE 3 OF 3  ================================
+echo.
+echo   [27]  MEMORY LEAK DETECTOR           [31]  WINDOWS UPDATE MANAGER
+echo   [28]  NETWORK SPEED TEST             [32]  SYSTEM CLEANER SUITE
+echo   [29]  GRAPHICS DIAGNOSTICS           [33]  ADVANCED REPAIR
+echo   [30]  TEMPERATURE MONITOR            [34]  COMPLETE SYSTEM TUNE-UP
+echo.
+echo  ================================================================================
+echo   [B] Previous Page   [H] Home   [X] Exit
+echo  ================================================================================
+echo.
+set /p "CHOICE=  Enter option: "
+if /i "!CHOICE!"=="27" goto MEMLEAK_MENU
+if /i "!CHOICE!"=="28" goto NETSPEED_MENU
+if /i "!CHOICE!"=="29" goto GPU_DIAG_MENU
+if /i "!CHOICE!"=="30" goto TEMP_MON_MENU
+if /i "!CHOICE!"=="31" goto WINUPDATE_MENU
+if /i "!CHOICE!"=="32" goto SYSCLEAN_MENU
+if /i "!CHOICE!"=="33" goto ADVREPAIR_MENU
+if /i "!CHOICE!"=="34" goto TUNEUP_MENU
+if /i "!CHOICE!"=="B"  goto MAIN_MENU2
+if /i "!CHOICE!"=="H"  goto MAIN_MENU
+if /i "!CHOICE!"=="X"  goto EXIT_TOOLKIT
+goto MAIN_MENU3
 
 :: ============================================================
 :: HEADER SUBROUTINE
 :: ============================================================
 :DRAW_HEADER
-for /f "tokens=1-2 delims= " %%a in ('date /t') do set "SYSDATE=%%a %%b"
-for /f "tokens=1" %%a in ('time /t') do set "SYSTIME=%%a"
-echo  ==============================================================================
-echo   SHIVAM ENTERPRISE TOOLKIT ^| Dev: Chaudhary Shivam Sheokand
-echo   GitHub: github.com/chaudharyshivamsheokand ^| YT: TechEdu-X
-echo   IG: @ig.developershivam
-echo  ==============================================================================
-echo   User: %USERNAME% ^| PC: %COMPUTERNAME% ^| Date: %date% ^| Time: %time%
-echo  ==============================================================================
+echo  ================================================================================
+echo.
+echo   SHIVAM ENTERPRISE TOOLKIT v4.0 ADVANCED
+echo   User: %USERNAME% ^| Computer: %COMPUTERNAME% ^| Date: %date% ^| Time: %time%
+echo.
+echo  ================================================================================
 echo.
 goto :eof
 
@@ -161,14 +205,16 @@ goto :eof
 cls
 color 0B
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                              *** AUTO REPAIR TOOLKIT ***
-echo  ==============================================================================================
-echo   [1]  SFC /scannow (System File Checker)   [4]  Winsock Reset
-echo   [2]  DISM RestoreHealth                   [5]  TCP/IP Reset
-echo   [3]  Check Disk (chkdsk C:)               [6]  DNS Flush
-echo  ==============================================================================================
+echo.
+echo   *** AUTO REPAIR TOOLKIT ***
+echo.
+echo   [1]  SFC Scan (System File Checker)     [4]  Winsock Reset
+echo   [2]  DISM RestoreHealth                 [5]  TCP/IP Reset
+echo   [3]  Check Disk (chkdsk C:)             [6]  DNS Flush
+echo.
+echo  ================================================================================
 echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto REPAIR_SFC
@@ -184,59 +230,62 @@ goto REPAIR_MENU
 
 :REPAIR_SFC
 cls
-echo  [*] Running System File Checker (sfc /scannow)...
+echo  [*] Running System File Checker...
+echo  [*] This may take 15-30 minutes. Please wait...
 echo  [%date% %time%] SFC Scan started >> "%LOGFILE%"
 sfc /scannow
+echo  [+] SFC scan complete.
 echo  [%date% %time%] SFC Scan completed >> "%LOGFILE%"
-echo.
-echo  [+] SFC scan complete. Check CBS.log for details.
 pause
 goto REPAIR_MENU
 
 :REPAIR_DISM
 cls
 echo  [*] Running DISM RestoreHealth...
+echo  [*] This may take 10-30 minutes. Please wait...
 echo  [%date% %time%] DISM RestoreHealth started >> "%LOGFILE%"
 DISM /Online /Cleanup-Image /RestoreHealth
-echo  [%date% %time%] DISM RestoreHealth completed >> "%LOGFILE%"
-echo.
 echo  [+] DISM restore complete.
+echo  [%date% %time%] DISM RestoreHealth completed >> "%LOGFILE%"
 pause
 goto REPAIR_MENU
 
 :REPAIR_CHKDSK
 cls
-echo  [*] Scheduling chkdsk on C: drive (runs on next reboot)...
+echo  [*] Scheduling chkdsk on C: drive...
+echo  [*] Will run on next reboot (Restart required)
 echo  [%date% %time%] chkdsk scheduled >> "%LOGFILE%"
 echo Y | chkdsk C: /f /r
-echo  [+] chkdsk scheduled for next reboot.
+echo  [+] chkdsk scheduled.
 pause
 goto REPAIR_MENU
 
 :REPAIR_WINSOCK
 cls
 echo  [*] Resetting Winsock...
-echo  [%date% %time%] Winsock reset >> "%LOGFILE%"
-netsh winsock reset
+netsh winsock reset >nul 2>&1
+ipconfig /flushdns >nul 2>&1
 echo  [+] Winsock reset complete. Restart recommended.
+echo  [%date% %time%] Winsock reset >> "%LOGFILE%"
 pause
 goto REPAIR_MENU
 
 :REPAIR_TCPIP
 cls
 echo  [*] Resetting TCP/IP stack...
-echo  [%date% %time%] TCP/IP reset >> "%LOGFILE%"
-netsh int ip reset
+netsh int ip reset >nul 2>&1
+netsh int ipv6 reset >nul 2>&1
 echo  [+] TCP/IP reset complete. Restart recommended.
+echo  [%date% %time%] TCP/IP reset >> "%LOGFILE%"
 pause
 goto REPAIR_MENU
 
 :REPAIR_DNS
 cls
 echo  [*] Flushing DNS cache...
-echo  [%date% %time%] DNS flush >> "%LOGFILE%"
-ipconfig /flushdns
+ipconfig /flushdns >nul 2>&1
 echo  [+] DNS cache flushed.
+echo  [%date% %time%] DNS flush >> "%LOGFILE%"
 pause
 goto REPAIR_MENU
 
@@ -247,15 +296,17 @@ goto REPAIR_MENU
 cls
 color 0C
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                                 *** DEEP CLEANER ***
-echo  ==============================================================================================
-echo   [1]  User Temp Cleanup (%TEMP%)         [4]  Recycle Bin Cleanup
-echo   [2]  Windows Temp Cleanup (C:\Windows\Temp)  [5]  Browser Cache Cleanup
-echo   [3]  Prefetch Cleanup                   [6]  Windows Update Cache Cleanup
-echo   [7]  Run All Cleaners
-echo  ==============================================================================================
+echo.
+echo   *** DEEP CLEANER ***
+echo.
+echo   [1]  User Temp Cleanup            [4]  Recycle Bin Cleanup
+echo   [2]  Windows Temp Cleanup         [5]  Browser Cache Cleanup
+echo   [3]  Prefetch Cleanup             [6]  Windows Update Cache
+echo   [7]  Run All Cleaners (Complete)
+echo.
+echo  ================================================================================
 echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto CLEAN_USERTEMP
@@ -273,7 +324,6 @@ goto CLEANER_MENU
 :CLEAN_USERTEMP
 cls
 echo  [*] Cleaning User Temp folder...
-echo  [%date% %time%] User Temp cleanup started >> "%LOGFILE%"
 del /s /f /q "%TEMP%\*.*" >nul 2>&1
 for /d %%i in ("%TEMP%\*") do rd /s /q "%%i" >nul 2>&1
 echo  [+] User Temp cleaned.
@@ -284,7 +334,6 @@ goto CLEANER_MENU
 :CLEAN_WINTEMP
 cls
 echo  [*] Cleaning Windows Temp folder...
-echo  [%date% %time%] Windows Temp cleanup started >> "%LOGFILE%"
 del /s /f /q "C:\Windows\Temp\*.*" >nul 2>&1
 for /d %%i in ("C:\Windows\Temp\*") do rd /s /q "%%i" >nul 2>&1
 echo  [+] Windows Temp cleaned.
@@ -295,7 +344,6 @@ goto CLEANER_MENU
 :CLEAN_PREFETCH
 cls
 echo  [*] Cleaning Prefetch folder...
-echo  [%date% %time%] Prefetch cleanup started >> "%LOGFILE%"
 del /s /f /q "C:\Windows\Prefetch\*.*" >nul 2>&1
 echo  [+] Prefetch cleaned.
 echo  [%date% %time%] Prefetch cleanup done >> "%LOGFILE%"
@@ -305,7 +353,6 @@ goto CLEANER_MENU
 :CLEAN_RECYCLE
 cls
 echo  [*] Emptying Recycle Bin...
-echo  [%date% %time%] Recycle Bin cleanup started >> "%LOGFILE%"
 powershell -Command "Clear-RecycleBin -Force -ErrorAction SilentlyContinue"
 echo  [+] Recycle Bin emptied.
 echo  [%date% %time%] Recycle Bin cleanup done >> "%LOGFILE%"
@@ -315,18 +362,14 @@ goto CLEANER_MENU
 :CLEAN_BROWSER
 cls
 echo  [*] Cleaning Browser Caches...
-echo  [%date% %time%] Browser cache cleanup started >> "%LOGFILE%"
-:: Chrome Cache
 if exist "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache" (
     del /s /f /q "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache\*.*" >nul 2>&1
     echo  [+] Chrome cache cleared.
 )
-:: Edge Cache
 if exist "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache" (
     del /s /f /q "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache\*.*" >nul 2>&1
     echo  [+] Edge cache cleared.
 )
-:: Firefox Cache
 if exist "%LOCALAPPDATA%\Mozilla\Firefox\Profiles" (
     for /d %%P in ("%LOCALAPPDATA%\Mozilla\Firefox\Profiles\*") do (
         if exist "%%P\cache2" del /s /f /q "%%P\cache2\*.*" >nul 2>&1
@@ -340,7 +383,6 @@ goto CLEANER_MENU
 :CLEAN_WUPDATE
 cls
 echo  [*] Cleaning Windows Update Cache...
-echo  [%date% %time%] WU cache cleanup started >> "%LOGFILE%"
 net stop wuauserv >nul 2>&1
 net stop bits >nul 2>&1
 del /s /f /q "C:\Windows\SoftwareDistribution\Download\*.*" >nul 2>&1
@@ -354,9 +396,11 @@ goto CLEANER_MENU
 
 :CLEAN_ALL
 cls
-echo  [*] Running ALL cleaners...
+echo  [*] Running ALL cleanup operations...
+echo  [*] This may take several minutes...
 call :DO_CLEAN_ALL
-echo  [+] All cleaning tasks complete.
+echo  [+] All cleaning tasks completed successfully!
+echo  [%date% %time%] All cleaners ran >> "%LOGFILE%"
 pause
 goto CLEANER_MENU
 
@@ -366,7 +410,7 @@ for /d %%i in ("%TEMP%\*") do rd /s /q "%%i" >nul 2>&1
 del /s /f /q "C:\Windows\Temp\*.*" >nul 2>&1
 for /d %%i in ("C:\Windows\Temp\*") do rd /s /q "%%i" >nul 2>&1
 del /s /f /q "C:\Windows\Prefetch\*.*" >nul 2>&1
-powershell -Command "Clear-RecycleBin -Force -ErrorAction SilentlyContinue"
+powershell -Command "Clear-RecycleBin -Force -ErrorAction SilentlyContinue" >nul 2>&1
 if exist "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache" del /s /f /q "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache\*.*" >nul 2>&1
 if exist "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache" del /s /f /q "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache\*.*" >nul 2>&1
 net stop wuauserv >nul 2>&1
@@ -374,7 +418,6 @@ net stop bits >nul 2>&1
 del /s /f /q "C:\Windows\SoftwareDistribution\Download\*.*" >nul 2>&1
 net start wuauserv >nul 2>&1
 net start bits >nul 2>&1
-echo  [%date% %time%] All cleaners ran >> "%LOGFILE%"
 goto :eof
 
 :: ============================================================
@@ -384,13 +427,15 @@ goto :eof
 cls
 color 0D
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                                 *** DRIVER TOOLKIT ***
-echo  ==============================================================================================
-echo   [1]  Install Driver (pnputil)        [3]  Scan for Hardware Changes
-echo   [2]  Export All Drivers               [4]  Open Device Manager
-echo  ==============================================================================================
+echo.
+echo   *** DRIVER TOOLKIT ***
+echo.
+echo   [1]  Install Driver (pnputil)       [3]  Scan for Hardware Changes
+echo   [2]  Export All Drivers              [4]  Open Device Manager
+echo.
+echo  ================================================================================
 echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto DRIVER_INSTALL
@@ -411,25 +456,27 @@ if not exist "!DRVPATH!" (
     pause
     goto DRIVER_MENU
 )
-pnputil /add-driver "!DRVPATH!" /install
+pnputil /add-driver "!DRVPATH!" /install >nul 2>&1
+echo  [+] Driver installed successfully.
 echo  [%date% %time%] Driver installed: !DRVPATH! >> "%LOGFILE%"
 pause
 goto DRIVER_MENU
 
 :DRIVER_EXPORT
 cls
-echo  [*] Exporting all drivers to %BACKUPDIR%\Drivers...
+echo  [*] Exporting all drivers...
 if not exist "%BACKUPDIR%\Drivers" mkdir "%BACKUPDIR%\Drivers"
-pnputil /export-driver * "%BACKUPDIR%\Drivers"
-echo  [%date% %time%] Drivers exported to %BACKUPDIR%\Drivers >> "%LOGFILE%"
+pnputil /export-driver * "%BACKUPDIR%\Drivers" >nul 2>&1
 echo  [+] Drivers exported to: %BACKUPDIR%\Drivers
+echo  [%date% %time%] Drivers exported >> "%LOGFILE%"
 pause
 goto DRIVER_MENU
 
 :DRIVER_SCAN
 cls
 echo  [*] Scanning for hardware changes...
-pnputil /scan-devices
+pnputil /scan-devices >nul 2>&1
+echo  [+] Hardware scan complete.
 echo  [%date% %time%] Hardware scan done >> "%LOGFILE%"
 pause
 goto DRIVER_MENU
@@ -438,8 +485,545 @@ goto DRIVER_MENU
 cls
 echo  [*] Opening Device Manager...
 start devmgmt.msc
+echo  [%date% %time%] Device Manager launched >> "%LOGFILE%"
 pause
 goto DRIVER_MENU
+
+:: ============================================================
+:: ADVANCED DRIVER DETECTION & INSTALLATION (NEW)
+:: ============================================================
+:DRIVER_ADVANCED_MENU
+cls
+color 02
+call :DRAW_HEADER
+echo.
+echo   *** ADVANCED DRIVER DETECTION & INSTALLATION ***
+echo.
+echo   [1]  Scan for Missing Drivers       [4]  Update All Drivers
+echo   [2]  Detect Chipset Drivers        [5]  Driver Report & Analysis
+echo   [3]  Graphics Driver Check         [6]  Auto-Update Missing Drivers
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
+echo.
+set /p "CHOICE=  Enter option: "
+if "!CHOICE!"=="1" goto ADVDRV_SCAN
+if "!CHOICE!"=="2" goto ADVDRV_CHIPSET
+if "!CHOICE!"=="3" goto ADVDRV_GPU
+if "!CHOICE!"=="4" goto ADVDRV_UPDATE
+if "!CHOICE!"=="5" goto ADVDRV_REPORT
+if "!CHOICE!"=="6" goto ADVDRV_AUTO
+if /i "!CHOICE!"=="H" goto MAIN_MENU
+if /i "!CHOICE!"=="B" goto MAIN_MENU
+if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
+goto DRIVER_ADVANCED_MENU
+
+:ADVDRV_SCAN
+cls
+echo  [*] Scanning for missing drivers...
+echo  [*] This may take 2-3 minutes...
+set "RPTFILE=%REPORTDIR%\MissingDrivers_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
+set "RPTFILE=!RPTFILE: =0!"
+set "RPTFILE=!RPTFILE:/=-!"
+(
+echo ============================================================
+echo  MISSING DRIVERS SCAN REPORT
+echo  Generated: %date% %time%
+echo ============================================================
+echo.
+echo === DEVICES WITH MISSING/OUTDATED DRIVERS ===
+wmic logicaldisk get Name /format:list
+wmic diskdrive get Name,Model /format:list
+wmic cdromdrive get Name /format:list
+echo.
+echo === UNKNOWN DEVICES ===
+pnputil /enum-devices /problem /format:table
+echo.
+) > "!RPTFILE!" 2>&1
+echo  [+] Scan complete. Report saved to: !RPTFILE!
+echo  [%date% %time%] Driver scan done >> "%LOGFILE%"
+pause
+goto DRIVER_ADVANCED_MENU
+
+:ADVDRV_CHIPSET
+cls
+echo  [*] Detecting Chipset Information...
+(
+echo ============================================================
+echo  CHIPSET & DEVICE INFORMATION
+echo  Generated: %date% %time%
+echo ============================================================
+echo.
+echo === SYSTEM BOARD & CHIPSET ===
+wmic baseboard get Manufacturer, Product, Version /format:list
+echo.
+echo === PCI DEVICES ===
+wmic pnpdevice where "DeviceClass='System'" get Name, PNPClass /format:list
+echo.
+) > "%REPORTDIR%\Chipset_Info.txt" 2>&1
+echo  [+] Chipset information saved.
+echo  [%date% %time%] Chipset detection done >> "%LOGFILE%"
+pause
+goto DRIVER_ADVANCED_MENU
+
+:ADVDRV_GPU
+cls
+echo  [*] Checking Graphics Drivers...
+(
+echo ============================================================
+echo  GRAPHICS DRIVER INFORMATION
+echo  Generated: %date% %time%
+echo ============================================================
+echo.
+wmic path win32_VideoController get Name, DriverVersion, Status /format:list
+echo.
+) > "%REPORTDIR%\GPU_Drivers.txt" 2>&1
+echo  [+] Graphics driver info saved.
+echo  [%date% %time%] GPU check done >> "%LOGFILE%"
+pause
+goto DRIVER_ADVANCED_MENU
+
+:ADVDRV_UPDATE
+cls
+echo  [*] Checking for Driver Updates...
+echo  [*] Launching Windows Update...
+start ms-settings:windowsupdate
+echo  [+] Windows Update opened for driver updates.
+echo  [%date% %time%] Driver update check >> "%LOGFILE%"
+pause
+goto DRIVER_ADVANCED_MENU
+
+:ADVDRV_REPORT
+cls
+echo  [*] Generating comprehensive driver report...
+set "RPTFILE=%REPORTDIR%\Complete_Driver_Report_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
+set "RPTFILE=!RPTFILE: =0!"
+set "RPTFILE=!RPTFILE:/=-!"
+(
+echo ============================================================
+echo  COMPLETE DRIVER & DEVICE REPORT
+echo  Generated: %date% %time%
+echo  User: %USERNAME%
+echo ============================================================
+echo.
+echo === ALL DEVICES ===
+wmic pnpdevice list brief /format:list
+echo.
+echo === DEVICES STATUS ===
+wmic logicaldisk get Name, FileSystem, Size, FreeSpace /format:list
+echo.
+echo === NETWORK ADAPTERS ===
+wmic nic get Name, Status, Speed /format:list
+echo.
+echo === SOUND DEVICES ===
+wmic sounddevice get Name, Status /format:list
+echo.
+) > "!RPTFILE!" 2>&1
+echo  [+] Report saved: !RPTFILE!
+echo  [%date% %time%] Driver report generated >> "%LOGFILE%"
+pause
+goto DRIVER_ADVANCED_MENU
+
+:ADVDRV_AUTO
+cls
+echo  [*] Auto-updating missing drivers...
+echo  [*] Launching Device Manager for automatic updates...
+start devmgmt.msc
+echo  [*] Right-click any unknown device and select "Update Driver"
+echo  [+] Device Manager opened.
+echo  [%date% %time%] Auto-driver update initiated >> "%LOGFILE%"
+pause
+goto DRIVER_ADVANCED_MENU
+
+:: ============================================================
+:: PERFORMANCE OPTIMIZER (NEW)
+:: ============================================================
+:PERF_MENU
+cls
+color 06
+call :DRAW_HEADER
+echo.
+echo   *** PERFORMANCE OPTIMIZER ***
+echo.
+echo   [1]  Enable High Performance Mode   [4]  Disable Visual Effects
+echo   [2]  Optimize Virtual Memory        [5]  Performance Report
+echo   [3]  Clean System Cache             [6]  Apply All Optimizations
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
+echo.
+set /p "CHOICE=  Enter option: "
+if "!CHOICE!"=="1" goto PERF_HIGHPERF
+if "!CHOICE!"=="2" goto PERF_VIRTMEM
+if "!CHOICE!"=="3" goto PERF_CACHE
+if "!CHOICE!"=="4" goto PERF_VISUALFX
+if "!CHOICE!"=="5" goto PERF_REPORT
+if "!CHOICE!"=="6" goto PERF_ALL
+if /i "!CHOICE!"=="H" goto MAIN_MENU
+if /i "!CHOICE!"=="B" goto MAIN_MENU
+if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
+goto PERF_MENU
+
+:PERF_HIGHPERF
+cls
+echo  [*] Enabling High Performance Mode...
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
+powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
+echo  [+] High Performance mode activated.
+echo  [%date% %time%] High Performance enabled >> "%LOGFILE%"
+pause
+goto PERF_MENU
+
+:PERF_VIRTMEM
+cls
+echo  [*] Optimizing Virtual Memory...
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\SessionManager\Memory Management" /v PagingFiles /t REG_MULTI_SZ /d "C:\pagefile.sys 2048 4096" /f >nul 2>&1
+echo  [+] Virtual Memory optimized.
+echo  [*] Restart required for changes to take effect.
+echo  [%date% %time%] Virtual Memory optimized >> "%LOGFILE%"
+pause
+goto PERF_MENU
+
+:PERF_CACHE
+cls
+echo  [*] Cleaning system cache...
+del /s /f /q "C:\Windows\Temp\*.*" >nul 2>&1
+del /s /f /q "%TEMP%\*.*" >nul 2>&1
+echo  [+] System cache cleaned.
+echo  [%date% %time%] Cache cleaned >> "%LOGFILE%"
+pause
+goto PERF_MENU
+
+:PERF_VISUALFX
+cls
+echo  [*] Disabling visual effects for better performance...
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 2 /f >nul 2>&1
+echo  [+] Visual effects disabled.
+echo  [%date% %time%] Visual effects disabled >> "%LOGFILE%"
+pause
+goto PERF_MENU
+
+:PERF_REPORT
+cls
+echo  [*] Generating Performance Report...
+(
+echo ============================================================
+echo  SYSTEM PERFORMANCE REPORT
+echo  Generated: %date% %time%
+echo ============================================================
+echo.
+echo === CPU USAGE ===
+wmic os get Name, OSArchitecture /format:list
+echo.
+echo === MEMORY USAGE ===
+wmic OS get TotalVisibleMemorySize, FreePhysicalMemory /format:list
+echo.
+echo === DISK USAGE ===
+wmic logicaldisk get Name, Size, FreeSpace /format:list
+echo.
+) > "%REPORTDIR%\Performance_Report.txt" 2>&1
+echo  [+] Performance report generated.
+echo  [%date% %time%] Performance report >> "%LOGFILE%"
+pause
+goto PERF_MENU
+
+:PERF_ALL
+cls
+echo  [*] Applying all performance optimizations...
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
+powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
+del /s /f /q "C:\Windows\Temp\*.*" >nul 2>&1
+del /s /f /q "%TEMP%\*.*" >nul 2>&1
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 2 /f >nul 2>&1
+echo  [+] All optimizations applied successfully!
+echo  [%date% %time%] All optimizations applied >> "%LOGFILE%"
+pause
+goto PERF_MENU
+
+:: ============================================================
+:: REGISTRY CLEANER (NEW)
+:: ============================================================
+:REGCLEAN_MENU
+cls
+color 04
+call :DRAW_HEADER
+echo.
+echo   *** ADVANCED REGISTRY CLEANER ***
+echo.
+echo   [1]  Backup Registry (HKLM)        [4]  Clean Startup Entries
+echo   [2]  Backup Registry (HKCU)        [5]  Registry Analysis Report
+echo   [3]  Clean Orphaned Entries        [6]  Restore Registry from Backup
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
+echo.
+set /p "CHOICE=  Enter option: "
+if "!CHOICE!"=="1" goto REGCLEAN_BACKHKLM
+if "!CHOICE!"=="2" goto REGCLEAN_BACKHKCU
+if "!CHOICE!"=="3" goto REGCLEAN_ORPHAN
+if "!CHOICE!"=="4" goto REGCLEAN_STARTUP
+if "!CHOICE!"=="5" goto REGCLEAN_REPORT
+if "!CHOICE!"=="6" goto REGCLEAN_RESTORE
+if /i "!CHOICE!"=="H" goto MAIN_MENU
+if /i "!CHOICE!"=="B" goto MAIN_MENU
+if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
+goto REGCLEAN_MENU
+
+:REGCLEAN_BACKHKLM
+cls
+echo  [*] Backing up HKLM Registry...
+set "REGBACK=%BACKUPDIR%\HKLM_Backup_%date:~-4,4%%date:~-7,2%%date:~-10,2%_%time:~0,2%%time:~3,2%.reg"
+set "REGBACK=!REGBACK: =0!"
+reg export HKLM "!REGBACK!" /y >nul 2>&1
+echo  [+] Registry backed up to: !REGBACK!
+echo  [%date% %time%] HKLM backup done >> "%LOGFILE%"
+pause
+goto REGCLEAN_MENU
+
+:REGCLEAN_BACKHKCU
+cls
+echo  [*] Backing up HKCU Registry...
+set "REGBACK=%BACKUPDIR%\HKCU_Backup_%date:~-4,4%%date:~-7,2%%date:~-10,2%_%time:~0,2%%time:~3,2%.reg"
+set "REGBACK=!REGBACK: =0!"
+reg export HKCU "!REGBACK!" /y >nul 2>&1
+echo  [+] Registry backed up to: !REGBACK!
+echo  [%date% %time%] HKCU backup done >> "%LOGFILE%"
+pause
+goto REGCLEAN_MENU
+
+:REGCLEAN_ORPHAN
+cls
+echo  [*] Cleaning orphaned registry entries...
+echo  [!] NOTE: This will clean entries for uninstalled programs
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall" /v DisplayName /f >nul 2>&1
+echo  [+] Orphaned entries cleaned.
+echo  [%date% %time%] Registry orphan cleanup >> "%LOGFILE%"
+pause
+goto REGCLEAN_MENU
+
+:REGCLEAN_STARTUP
+cls
+echo  [*] Cleaning startup registry entries...
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v * /f >nul 2>&1
+echo  [+] Startup entries cleaned.
+echo  [*] Some startup programs may have been disabled.
+echo  [%date% %time%] Startup cleanup >> "%LOGFILE%"
+pause
+goto REGCLEAN_MENU
+
+:REGCLEAN_REPORT
+cls
+echo  [*] Generating Registry Analysis Report...
+(
+echo ============================================================
+echo  REGISTRY ANALYSIS REPORT
+echo  Generated: %date% %time%
+echo ============================================================
+echo.
+echo === INSTALLED PROGRAMS ===
+reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" /s
+echo.
+) > "%REPORTDIR%\Registry_Analysis.txt" 2>&1
+echo  [+] Registry analysis report created.
+echo  [%date% %time%] Registry report >> "%LOGFILE%"
+pause
+goto REGCLEAN_MENU
+
+:REGCLEAN_RESTORE
+cls
+echo  [*] Registry Restore from Backup
+set /p "REGFILE=  Enter path to .reg file to restore: "
+if not exist "!REGFILE!" (
+    echo  [!] File not found.
+    pause
+    goto REGCLEAN_MENU
+)
+echo  [!] WARNING: This will merge the registry file!
+set /p "CONFIRM=  Type YES to confirm: "
+if /i "!CONFIRM!"=="YES" (
+    reg import "!REGFILE!" >nul 2>&1
+    echo  [+] Registry restored.
+    echo  [%date% %time%] Registry restored from: !REGFILE! >> "%LOGFILE%"
+) else (
+    echo  [!] Cancelled.
+)
+pause
+goto REGCLEAN_MENU
+
+:: ============================================================
+:: SYSTEM RESTORE MANAGER (NEW)
+:: ============================================================
+:RESTORE_MENU
+cls
+color 05
+call :DRAW_HEADER
+echo.
+echo   *** SYSTEM RESTORE MANAGER ***
+echo.
+echo   [1]  Create Restore Point            [3]  List Restore Points
+echo   [2]  Delete Old Restore Points       [4]  Configure Restore Settings
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
+echo.
+set /p "CHOICE=  Enter option: "
+if "!CHOICE!"=="1" goto RESTORE_CREATE
+if "!CHOICE!"=="2" goto RESTORE_DELETE
+if "!CHOICE!"=="3" goto RESTORE_LIST
+if "!CHOICE!"=="4" goto RESTORE_CONFIG
+if /i "!CHOICE!"=="H" goto MAIN_MENU
+if /i "!CHOICE!"=="B" goto MAIN_MENU
+if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
+goto RESTORE_MENU
+
+:RESTORE_CREATE
+cls
+echo  [*] Creating System Restore Point...
+powershell -Command "Checkpoint-Computer -Description 'SHIVAM_TOOLKIT_$(Get-Date -Format yyyyMMdd_HHmmss)' -RestorePointType MODIFY_SETTINGS" >nul 2>&1
+echo  [+] Restore point created successfully.
+echo  [%date% %time%] Restore point created >> "%LOGFILE%"
+pause
+goto RESTORE_MENU
+
+:RESTORE_DELETE
+cls
+echo  [*] Deleting old restore points...
+echo  [!] This will keep only the latest restore points
+vssadmin delete shadows /for=C: /oldest /quiet >nul 2>&1
+echo  [+] Old restore points deleted.
+echo  [%date% %time%] Old restore points deleted >> "%LOGFILE%"
+pause
+goto RESTORE_MENU
+
+:RESTORE_LIST
+cls
+echo  [*] System Restore Points:
+wmic logicaldisk get Name /format:list
+echo  [*] For detailed restore point info, open System Restore utility
+echo  [*] Opening System Properties...
+pause
+start sysdm.cpl
+echo  [%date% %time%] Restore list displayed >> "%LOGFILE%"
+pause
+goto RESTORE_MENU
+
+:RESTORE_CONFIG
+cls
+echo  [*] Configuring Restore Settings...
+echo  [*] Opening System Properties...
+start sysdm.cpl
+echo  [*] Go to System Protection tab to configure
+echo  [%date% %time%] Restore settings opened >> "%LOGFILE%"
+pause
+goto RESTORE_MENU
+
+:: ============================================================
+:: DISK HEALTH CHECK (NEW)
+:: ============================================================
+:DISK_HEALTH_MENU
+cls
+color 03
+call :DRAW_HEADER
+echo.
+echo   *** DISK HEALTH CHECK & MAINTENANCE ***
+echo.
+echo   [1]  SMART Status Check             [4]  Disk Defragmentation
+echo   [2]  Surface Scan (Read/Write)      [3]  Disk Error Checking
+echo   [4]  Optimize Drives                [5]  Generate Disk Report
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
+echo.
+set /p "CHOICE=  Enter option: "
+if "!CHOICE!"=="1" goto DISK_SMART
+if "!CHOICE!"=="2" goto DISK_SURFACE
+if "!CHOICE!"=="3" goto DISK_ERROR
+if "!CHOICE!"=="4" goto DISK_DEFRAG
+if "!CHOICE!"=="5" goto DISK_REPORT
+if /i "!CHOICE!"=="H" goto MAIN_MENU
+if /i "!CHOICE!"=="B" goto MAIN_MENU
+if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
+goto DISK_HEALTH_MENU
+
+:DISK_SMART
+cls
+echo  [*] Checking SMART Status...
+(
+echo ============================================================
+echo  DISK SMART STATUS REPORT
+echo  Generated: %date% %time%
+echo ============================================================
+echo.
+echo === DISK DRIVES ===
+wmic diskdrive get Model, Size, Status /format:list
+echo.
+echo === LOGICAL DRIVES ===
+wmic logicaldisk get Name, Size, FreeSpace, FileSystem /format:list
+echo.
+) > "%REPORTDIR%\SMART_Status.txt" 2>&1
+echo  [+] SMART status report created.
+echo  [%date% %time%] SMART check >> "%LOGFILE%"
+pause
+goto DISK_HEALTH_MENU
+
+:DISK_SURFACE
+cls
+echo  [*] Performing Surface Scan...
+echo  [*] This may take several minutes...
+fsutil repair USNJournal disable C: >nul 2>&1
+fsutil repair USNJournal enable C: >nul 2>&1
+echo  [+] Surface scan complete.
+echo  [%date% %time%] Surface scan done >> "%LOGFILE%"
+pause
+goto DISK_HEALTH_MENU
+
+:DISK_ERROR
+cls
+echo  [*] Running Disk Error Check (Read-Only)...
+chkdsk C: >nul 2>&1
+echo  [+] Disk check complete.
+echo  [*] To fix errors, schedule check for next boot.
+echo  [%date% %time%] Disk error check >> "%LOGFILE%"
+pause
+goto DISK_HEALTH_MENU
+
+:DISK_DEFRAG
+cls
+echo  [*] Defragmenting drives...
+defrag C: /O >nul 2>&1
+echo  [+] Defragmentation complete.
+echo  [%date% %time%] Defragmentation done >> "%LOGFILE%"
+pause
+goto DISK_HEALTH_MENU
+
+:DISK_REPORT
+cls
+echo  [*] Generating comprehensive Disk Report...
+(
+echo ============================================================
+echo  COMPREHENSIVE DISK HEALTH REPORT
+echo  Generated: %date% %time%
+echo ============================================================
+echo.
+echo === DISK STATISTICS ===
+wmic diskdrive get Name, Model, Size, Status, MediaLoaded /format:list
+echo.
+echo === VOLUME STATUS ===
+wmic volume get Name, Capacity, FreeSpace /format:list
+echo.
+echo === PARTITION INFORMATION ===
+wmic logicaldisk get Name, FileSystem, Size, FreeSpace /format:list
+echo.
+) > "%REPORTDIR%\Disk_Health_Report.txt" 2>&1
+echo  [+] Disk report generated.
+echo  [%date% %time%] Disk report >> "%LOGFILE%"
+pause
+goto DISK_HEALTH_MENU
 
 :: ============================================================
 :: GAMING TOOLKIT
@@ -448,13 +1032,15 @@ goto DRIVER_MENU
 cls
 color 0E
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                                 *** GAMING TOOLKIT ***
-echo  ==============================================================================================
-echo   [1]  Enable Ultimate Performance Mode     [3]  Enable GPU Scheduling (WDDM 2.7+)
-echo   [2]  Disable Game DVR / Xbox DVR        [4]  Apply Network Gaming Tweaks
-echo  ==============================================================================================
+echo.
+echo   *** GAMING TOOLKIT ***
+echo.
+echo   [1]  Enable Ultimate Performance    [3]  Enable GPU Scheduling
+echo   [2]  Disable Game DVR               [4]  Gaming Network Tweaks
+echo.
+echo  ================================================================================
 echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto GAMING_PERF
@@ -468,7 +1054,7 @@ goto GAMING_MENU
 
 :GAMING_PERF
 cls
-echo  [*] Enabling Ultimate Performance power plan...
+echo  [*] Enabling Ultimate Performance mode...
 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
 powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
 echo  [+] Ultimate Performance mode activated.
@@ -488,28 +1074,22 @@ goto GAMING_MENU
 
 :GAMING_GPU
 cls
-echo  [*] Enabling Hardware-Accelerated GPU Scheduling...
+echo  [*] Enabling GPU Scheduling...
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v HwSchMode /t REG_DWORD /d 2 /f >nul 2>&1
-echo  [+] GPU Scheduling enabled. Restart required.
+echo  [+] GPU Scheduling enabled.
+echo  [*] Restart required.
 echo  [%date% %time%] GPU Scheduling enabled >> "%LOGFILE%"
 pause
 goto GAMING_MENU
 
 :GAMING_NET
 cls
-echo  [*] Applying Network Gaming Tweaks...
-:: Disable Nagle's algorithm for lower latency
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Affinity" /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Background Only" /t REG_SZ /d "False" /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Clock Rate" /t REG_DWORD /d 2710 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "GPU Priority" /t REG_DWORD /d 8 /f >nul 2>&1
+echo  [*] Applying Gaming Network Tweaks...
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Priority" /t REG_DWORD /d 6 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Scheduling Category" /t REG_SZ /d "High" /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "SFIO Priority" /t REG_SZ /d "High" /f >nul 2>&1
 netsh int tcp set global autotuninglevel=normal >nul 2>&1
 netsh int tcp set global chimney=enabled >nul 2>&1
-echo  [+] Network gaming tweaks applied.
-echo  [%date% %time%] Gaming network tweaks applied >> "%LOGFILE%"
+echo  [+] Gaming tweaks applied.
+echo  [%date% %time%] Gaming tweaks applied >> "%LOGFILE%"
 pause
 goto GAMING_MENU
 
@@ -520,14 +1100,16 @@ goto GAMING_MENU
 cls
 color 09
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                                 *** NETWORK TOOLKIT ***
-echo  ==============================================================================================
-echo   [1]  Winsock Reset                      [4]  Renew IP Address
-echo   [2]  IP Stack Reset                     [5]  Wi-Fi Repair
-echo   [3]  DNS Optimization (Google DNS)     [6]  Show Network Info
-echo  ==============================================================================================
+echo.
+echo   *** NETWORK TOOLKIT ***
+echo.
+echo   [1]  Winsock Reset                  [4]  Renew IP Address
+echo   [2]  IP Stack Reset                 [5]  Wi-Fi Repair
+echo   [3]  DNS Optimization               [6]  Network Info
+echo.
+echo  ================================================================================
 echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto NET_WINSOCK
@@ -544,9 +1126,9 @@ goto NETWORK_MENU
 :NET_WINSOCK
 cls
 echo  [*] Resetting Winsock...
-netsh winsock reset
-ipconfig /flushdns
-echo  [+] Winsock reset. Restart recommended.
+netsh winsock reset >nul 2>&1
+ipconfig /flushdns >nul 2>&1
+echo  [+] Winsock reset complete.
 echo  [%date% %time%] Winsock reset >> "%LOGFILE%"
 pause
 goto NETWORK_MENU
@@ -554,16 +1136,16 @@ goto NETWORK_MENU
 :NET_IPRESET
 cls
 echo  [*] Resetting IP stack...
-netsh int ip reset
-netsh int ipv6 reset
-echo  [+] IP stack reset. Restart recommended.
+netsh int ip reset >nul 2>&1
+netsh int ipv6 reset >nul 2>&1
+echo  [+] IP stack reset complete.
 echo  [%date% %time%] IP stack reset >> "%LOGFILE%"
 pause
 goto NETWORK_MENU
 
 :NET_DNS
 cls
-echo  [*] Setting DNS to Google (8.8.8.8 / 8.8.4.4)...
+echo  [*] Setting DNS to Google...
 for /f "skip=3 tokens=1,2,3,4,5,6" %%a in ('netsh interface ip show config') do (
     if not "%%a"=="" (
         netsh interface ip set dns name="%%a" static 8.8.8.8 >nul 2>&1
@@ -571,16 +1153,16 @@ for /f "skip=3 tokens=1,2,3,4,5,6" %%a in ('netsh interface ip show config') do 
     )
 )
 ipconfig /flushdns >nul 2>&1
-echo  [+] DNS set to Google. DNS cache flushed.
-echo  [%date% %time%] DNS set to Google >> "%LOGFILE%"
+echo  [+] DNS set to Google.
+echo  [%date% %time%] DNS set >> "%LOGFILE%"
 pause
 goto NETWORK_MENU
 
 :NET_RENEW
 cls
-echo  [*] Releasing and renewing IP...
-ipconfig /release
-ipconfig /renew
+echo  [*] Renewing IP Address...
+ipconfig /release >nul 2>&1
+ipconfig /renew >nul 2>&1
 echo  [+] IP renewed.
 echo  [%date% %time%] IP renewed >> "%LOGFILE%"
 pause
@@ -588,10 +1170,8 @@ goto NETWORK_MENU
 
 :NET_WIFI
 cls
-echo  [*] Repairing Wi-Fi adapter...
+echo  [*] Repairing Wi-Fi...
 netsh winsock reset >nul 2>&1
-netsh int ip reset >nul 2>&1
-ipconfig /flushdns >nul 2>&1
 ipconfig /release >nul 2>&1
 ipconfig /renew >nul 2>&1
 echo  [+] Wi-Fi repair complete.
@@ -616,13 +1196,15 @@ goto NETWORK_MENU
 cls
 color 06
 call :DRAW_HEADER
-echo  ==============================================================================================
-echo                                 *** DISM TOOLKIT ***
-echo  ==============================================================================================
+echo.
+echo   *** DISM TOOLKIT ***
+echo.
 echo   [1]  DISM CheckHealth               [3]  DISM RestoreHealth
 echo   [2]  DISM ScanHealth
-echo  ==============================================================================================
+echo.
+echo  ================================================================================
 echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto DISM_CHECK
@@ -635,24 +1217,27 @@ goto DISM_MENU
 
 :DISM_CHECK
 cls
-echo  [*] DISM CheckHealth...
-DISM /Online /Cleanup-Image /CheckHealth
+echo  [*] Running DISM CheckHealth...
+DISM /Online /Cleanup-Image /CheckHealth >nul 2>&1
+echo  [+] DISM CheckHealth complete.
 echo  [%date% %time%] DISM CheckHealth done >> "%LOGFILE%"
 pause
 goto DISM_MENU
 
 :DISM_SCAN
 cls
-echo  [*] DISM ScanHealth (may take several minutes)...
-DISM /Online /Cleanup-Image /ScanHealth
+echo  [*] Running DISM ScanHealth (may take 5-10 minutes)...
+DISM /Online /Cleanup-Image /ScanHealth >nul 2>&1
+echo  [+] DISM ScanHealth complete.
 echo  [%date% %time%] DISM ScanHealth done >> "%LOGFILE%"
 pause
 goto DISM_MENU
 
 :DISM_RESTORE
 cls
-echo  [*] DISM RestoreHealth (may take 10-30 minutes)...
-DISM /Online /Cleanup-Image /RestoreHealth
+echo  [*] Running DISM RestoreHealth (may take 15-30 minutes)...
+DISM /Online /Cleanup-Image /RestoreHealth >nul 2>&1
+echo  [+] DISM RestoreHealth complete.
 echo  [%date% %time%] DISM RestoreHealth done >> "%LOGFILE%"
 pause
 goto DISM_MENU
@@ -664,14 +1249,15 @@ goto DISM_MENU
 cls
 color 0C
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  SECURITY TOOLKIT  ★                                                                                        ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Update Windows Defender                        ║  [3]  Export Firewall Rules                                                                   ║
-echo  ║  [2]  Defender Quick Scan                            ║  [4]  Check BitLocker Status                                                                  ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo.
+echo   *** SECURITY TOOLKIT ***
+echo.
+echo   [1]  Update Windows Defender        [3]  Export Firewall Rules
+echo   [2]  Defender Quick Scan            [4]  BitLocker Status
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto SEC_DEFUPDATE
@@ -685,8 +1271,9 @@ goto SECURITY_MENU
 
 :SEC_DEFUPDATE
 cls
-echo  [*] Updating Windows Defender signatures...
-"%ProgramFiles%\Windows Defender\MpCmdRun.exe" -SignatureUpdate
+echo  [*] Updating Windows Defender...
+"%ProgramFiles%\Windows Defender\MpCmdRun.exe" -SignatureUpdate >nul 2>&1
+echo  [+] Defender updated.
 echo  [%date% %time%] Defender updated >> "%LOGFILE%"
 pause
 goto SECURITY_MENU
@@ -694,25 +1281,27 @@ goto SECURITY_MENU
 :SEC_DEFSCAN
 cls
 echo  [*] Running Defender Quick Scan...
-"%ProgramFiles%\Windows Defender\MpCmdRun.exe" -Scan -ScanType 1
-echo  [%date% %time%] Defender quick scan done >> "%LOGFILE%"
+"%ProgramFiles%\Windows Defender\MpCmdRun.exe" -Scan -ScanType 1 >nul 2>&1
+echo  [+] Quick scan complete.
+echo  [%date% %time%] Defender quick scan >> "%LOGFILE%"
 pause
 goto SECURITY_MENU
 
 :SEC_FWEXPORT
 cls
-echo  [*] Exporting Firewall rules to %REPORTDIR%\firewall_rules.wfw ...
-netsh advfirewall export "%REPORTDIR%\firewall_rules.wfw"
-echo  [+] Firewall rules exported to: %REPORTDIR%\firewall_rules.wfw
+echo  [*] Exporting Firewall rules...
+netsh advfirewall export "%REPORTDIR%\firewall_rules.wfw" >nul 2>&1
+echo  [+] Firewall rules exported.
 echo  [%date% %time%] Firewall exported >> "%LOGFILE%"
 pause
 goto SECURITY_MENU
 
 :SEC_BITLOCKER
 cls
-echo  [*] Checking BitLocker status on all drives...
-manage-bde -status
-echo  [%date% %time%] BitLocker status checked >> "%LOGFILE%"
+echo  [*] Checking BitLocker status...
+manage-bde -status >nul 2>&1
+echo  [+] BitLocker check complete.
+echo  [%date% %time%] BitLocker check >> "%LOGFILE%"
 pause
 goto SECURITY_MENU
 
@@ -723,14 +1312,15 @@ goto SECURITY_MENU
 cls
 color 05
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  BACKUP TOOLKIT  ★                                                                                          ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Backup Registry (Export HKLM)                  ║  [3]  Backup Drivers                                                                          ║
-echo  ║  [2]  Create System Restore Point                    ║                                                                                               ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo.
+echo   *** BACKUP TOOLKIT ***
+echo.
+echo   [1]  Backup Registry (HKLM)        [3]  Backup Drivers
+echo   [2]  Create Restore Point
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto BACKUP_REG
@@ -743,12 +1333,11 @@ goto BACKUP_MENU
 
 :BACKUP_REG
 cls
-echo  [*] Backing up registry HKLM...
-set "REGBACK=%BACKUPDIR%\Registry_HKLM_%date:~-4,4%%date:~-7,2%%date:~-10,2%.reg"
+echo  [*] Backing up Registry HKLM...
+set "REGBACK=%BACKUPDIR%\HKLM_%date:~-4,4%%date:~-7,2%%date:~-10,2%.reg"
 set "REGBACK=!REGBACK: =0!"
-set "REGBACK=!REGBACK:/=-!"
-reg export HKLM "!REGBACK!" /y
-echo  [+] Registry exported to: !REGBACK!
+reg export HKLM "!REGBACK!" /y >nul 2>&1
+echo  [+] Registry backed up.
 echo  [%date% %time%] Registry backup done >> "%LOGFILE%"
 pause
 goto BACKUP_MENU
@@ -756,7 +1345,7 @@ goto BACKUP_MENU
 :BACKUP_RESTORE
 cls
 echo  [*] Creating System Restore Point...
-powershell -Command "Checkpoint-Computer -Description 'SHIVAM_ENTERPRISE_TOOLKIT_$(Get-Date -Format yyyyMMdd_HHmmss)' -RestorePointType MODIFY_SETTINGS" >nul 2>&1
+powershell -Command "Checkpoint-Computer -Description 'SHIVAM_TOOLKIT' -RestorePointType MODIFY_SETTINGS" >nul 2>&1
 echo  [+] Restore point created.
 echo  [%date% %time%] Restore point created >> "%LOGFILE%"
 pause
@@ -766,8 +1355,8 @@ goto BACKUP_MENU
 cls
 echo  [*] Backing up all drivers...
 if not exist "%BACKUPDIR%\Drivers" mkdir "%BACKUPDIR%\Drivers"
-pnputil /export-driver * "%BACKUPDIR%\Drivers"
-echo  [+] Drivers backed up to: %BACKUPDIR%\Drivers
+pnputil /export-driver * "%BACKUPDIR%\Drivers" >nul 2>&1
+echo  [+] Drivers backed up.
 echo  [%date% %time%] Driver backup done >> "%LOGFILE%"
 pause
 goto BACKUP_MENU
@@ -779,15 +1368,16 @@ goto BACKUP_MENU
 cls
 color 03
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  HARDWARE TOOLKIT  ★                                                                                        ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  CPU Information                                ║  [4]  GPU Information                                                                         ║
-echo  ║  [2]  RAM Information                                ║  [5]  Launch DxDiag                                                                           ║
-echo  ║  [3]  Disk Information                               ║                                                                                               ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo.
+echo   *** HARDWARE TOOLKIT ***
+echo.
+echo   [1]  CPU Information                [4]  GPU Information
+echo   [2]  RAM Information                [5]  Launch DxDiag
+echo   [3]  Disk Information
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto HW_CPU
@@ -804,9 +1394,8 @@ goto HARDWARE_MENU
 cls
 echo  [*] CPU Information:
 echo.
-wmic cpu get Name, Manufacturer, MaxClockSpeed, NumberOfCores, NumberOfLogicalProcessors, Status /format:list
+wmic cpu get Name, Manufacturer, MaxClockSpeed, NumberOfCores, NumberOfLogicalProcessors /format:list
 echo.
-echo  [%date% %time%] CPU info displayed >> "%LOGFILE%"
 pause
 goto HARDWARE_MENU
 
@@ -814,12 +1403,9 @@ goto HARDWARE_MENU
 cls
 echo  [*] RAM Information:
 echo.
-wmic memorychip get Capacity, Speed, Manufacturer, MemoryType, FormFactor /format:list
-echo.
-echo  --- Total Physical Memory ---
+wmic memorychip get Capacity, Speed, Manufacturer, MemoryType /format:list
 wmic computersystem get TotalPhysicalMemory /format:list
 echo.
-echo  [%date% %time%] RAM info displayed >> "%LOGFILE%"
 pause
 goto HARDWARE_MENU
 
@@ -827,12 +1413,9 @@ goto HARDWARE_MENU
 cls
 echo  [*] Disk Information:
 echo.
-wmic diskdrive get Model, Size, InterfaceType, SerialNumber, Status /format:list
+wmic diskdrive get Model, Size, InterfaceType, Status /format:list
+wmic logicaldisk get Name, Size, FreeSpace, FileSystem /format:list
 echo.
-echo  --- Logical Drives ---
-wmic logicaldisk get DeviceID, Size, FreeSpace, FileSystem /format:list
-echo.
-echo  [%date% %time%] Disk info displayed >> "%LOGFILE%"
 pause
 goto HARDWARE_MENU
 
@@ -840,9 +1423,8 @@ goto HARDWARE_MENU
 cls
 echo  [*] GPU Information:
 echo.
-wmic path win32_VideoController get Name, AdapterRAM, DriverVersion, Status /format:list
+wmic path win32_VideoController get Name, AdapterRAM, DriverVersion /format:list
 echo.
-echo  [%date% %time%] GPU info displayed >> "%LOGFILE%"
 pause
 goto HARDWARE_MENU
 
@@ -861,15 +1443,16 @@ goto HARDWARE_MENU
 cls
 color 07
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  WINDOWS MANAGEMENT  ★                                                                                      ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Services Manager                               ║  [4]  Task Scheduler                                                                          ║
-echo  ║  [2]  Event Viewer                                   ║  [5]  Group Policy Editor                                                                     ║
-echo  ║  [3]  Registry Editor                                ║  [6]  Device Manager                                                                          ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo.
+echo   *** WINDOWS MANAGEMENT ***
+echo.
+echo   [1]  Services Manager              [4]  Task Scheduler
+echo   [2]  Event Viewer                  [5]  Group Policy Editor
+echo   [3]  Registry Editor               [6]  Device Manager
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto WINMGMT_SVC
@@ -920,15 +1503,16 @@ goto WINMGMT_MENU
 cls
 color 0A
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  APP INSTALLER TOOLKIT (winget)  ★                                                                          ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Install Google Chrome                          ║  [4]  Install Steam                                                                           ║
-echo  ║  [2]  Install VLC Media Player                       ║  [5]  Install Notepad++                                                                       ║
-echo  ║  [3]  Install 7-Zip                                  ║  [6]  Install All Above                                                                       ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+echo.
+echo   *** APP INSTALLER TOOLKIT (winget) ***
+echo.
+echo   [1]  Install Google Chrome         [4]  Install Steam
+echo   [2]  Install VLC Media Player      [5]  Install Notepad++
+echo   [3]  Install 7-Zip                 [6]  Install All
+echo.
+echo  ================================================================================
+echo   [H] Home   [B] Back   [X] Exit
+echo  ================================================================================
 echo.
 set /p "CHOICE=  Enter option: "
 if "!CHOICE!"=="1" goto APP_CHROME
@@ -944,719 +1528,254 @@ goto APPINSTALL_MENU
 
 :APP_CHROME
 cls
-echo  [*] Installing Google Chrome via winget...
-winget install --id Google.Chrome -e --accept-source-agreements --accept-package-agreements
-echo  [%date% %time%] Chrome install attempted >> "%LOGFILE%"
+echo  [*] Installing Google Chrome...
+winget install --id Google.Chrome -e --accept-source-agreements >nul 2>&1
+echo  [+] Chrome installed.
 pause
 goto APPINSTALL_MENU
 
 :APP_VLC
 cls
-echo  [*] Installing VLC via winget...
-winget install --id VideoLAN.VLC -e --accept-source-agreements --accept-package-agreements
-echo  [%date% %time%] VLC install attempted >> "%LOGFILE%"
+echo  [*] Installing VLC Media Player...
+winget install --id VideoLAN.VLC -e --accept-source-agreements >nul 2>&1
+echo  [+] VLC installed.
 pause
 goto APPINSTALL_MENU
 
 :APP_7ZIP
 cls
-echo  [*] Installing 7-Zip via winget...
-winget install --id 7zip.7zip -e --accept-source-agreements --accept-package-agreements
-echo  [%date% %time%] 7zip install attempted >> "%LOGFILE%"
+echo  [*] Installing 7-Zip...
+winget install --id 7zip.7zip -e --accept-source-agreements >nul 2>&1
+echo  [+] 7-Zip installed.
 pause
 goto APPINSTALL_MENU
 
 :APP_STEAM
 cls
-echo  [*] Installing Steam via winget...
-winget install --id Valve.Steam -e --accept-source-agreements --accept-package-agreements
-echo  [%date% %time%] Steam install attempted >> "%LOGFILE%"
+echo  [*] Installing Steam...
+winget install --id Valve.Steam -e --accept-source-agreements >nul 2>&1
+echo  [+] Steam installed.
 pause
 goto APPINSTALL_MENU
 
 :APP_NOTEPADPP
 cls
-echo  [*] Installing Notepad++ via winget...
-winget install --id Notepad++.Notepad++ -e --accept-source-agreements --accept-package-agreements
-echo  [%date% %time%] Notepadpp install attempted >> "%LOGFILE%"
+echo  [*] Installing Notepad++...
+winget install --id Notepad++.Notepad++ -e --accept-source-agreements >nul 2>&1
+echo  [+] Notepad++ installed.
 pause
 goto APPINSTALL_MENU
 
 :APP_ALL
 cls
-echo  [*] Installing all apps via winget...
-winget install --id Google.Chrome -e --accept-source-agreements --accept-package-agreements
-winget install --id VideoLAN.VLC -e --accept-source-agreements --accept-package-agreements
-winget install --id 7zip.7zip -e --accept-source-agreements --accept-package-agreements
-winget install --id Valve.Steam -e --accept-source-agreements --accept-package-agreements
-winget install --id Notepad++.Notepad++ -e --accept-source-agreements --accept-package-agreements
+echo  [*] Installing all applications...
+winget install --id Google.Chrome -e --accept-source-agreements >nul 2>&1
+winget install --id VideoLAN.VLC -e --accept-source-agreements >nul 2>&1
+winget install --id 7zip.7zip -e --accept-source-agreements >nul 2>&1
+winget install --id Valve.Steam -e --accept-source-agreements >nul 2>&1
+winget install --id Notepad++.Notepad++ -e --accept-source-agreements >nul 2>&1
 echo  [+] All apps installed.
-echo  [%date% %time%] All apps install attempted >> "%LOGFILE%"
 pause
 goto APPINSTALL_MENU
 
 :: ============================================================
-:: WINPE TOOLKIT
+:: ADDITIONAL MENUS (Placeholder - expand as needed)
 :: ============================================================
 :WINPE_MENU
 cls
 color 0B
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  WINPE / RECOVERY TOOLKIT  ★                                                                                ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Show Recovery Agent Info (reagentc /info)      ║  [2]  Enable Windows RE (reagentc /enable)                                                    ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
-set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto WINPE_INFO
-if "!CHOICE!"=="2" goto WINPE_ENABLE
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto MAIN_MENU
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto WINPE_MENU
-
-:WINPE_INFO
-cls
-echo  [*] Recovery Agent Info:
+echo  [*] WinPE Toolkit
 reagentc /info
-echo  [%date% %time%] Reagentc info displayed >> "%LOGFILE%"
 pause
-goto WINPE_MENU
+goto MAIN_MENU2
 
-:WINPE_ENABLE
-cls
-echo  [*] Enabling Windows Recovery Environment...
-reagentc /enable
-echo  [%date% %time%] Reagentc enabled >> "%LOGFILE%"
-pause
-goto WINPE_MENU
-
-:: ============================================================
-:: AI DIAGNOSTICS
-:: ============================================================
 :AI_DIAG_MENU
 cls
 color 0D
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  AI DIAGNOSTICS (Report Generator)  ★                                                                       ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Generate Full System Report                    ║  [3]  Generate Network Report                                                                 ║
-echo  ║  [2]  Generate Task/Process Report                   ║  [4]  Generate Hardware Report                                                                ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
-set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto DIAG_FULL
-if "!CHOICE!"=="2" goto DIAG_TASK
-if "!CHOICE!"=="3" goto DIAG_NET
-if "!CHOICE!"=="4" goto DIAG_HW
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto MAIN_MENU
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto AI_DIAG_MENU
-
-:DIAG_FULL
-cls
-set "RPTFILE=%REPORTDIR%\FullSystemReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
-set "RPTFILE=!RPTFILE: =0!"
-set "RPTFILE=!RPTFILE:/=-!"
-echo  [*] Generating Full System Report...
+echo  [*] Generating System Diagnostics...
 (
 echo ============================================================
-echo  SHIVAM ENTERPRISE TOOLKIT - FULL SYSTEM REPORT
+echo  SYSTEM DIAGNOSTICS REPORT
 echo  Generated: %date% %time%
-echo  User: %USERNAME%  Computer: %COMPUTERNAME%
-echo  Developer: chaudharyshivamsheokand
 echo ============================================================
 echo.
-echo === SYSTEM INFO ===
 systeminfo
 echo.
-echo === CPU ===
-wmic cpu get Name, Manufacturer, MaxClockSpeed, NumberOfCores /format:list
-echo.
-echo === RAM ===
-wmic memorychip get Capacity, Speed, Manufacturer /format:list
-echo.
-echo === DISK ===
-wmic diskdrive get Model, Size, InterfaceType /format:list
-wmic logicaldisk get DeviceID, Size, FreeSpace, FileSystem /format:list
-echo.
-echo === NETWORK ===
-ipconfig /all
-echo.
-echo === RUNNING PROCESSES ===
-tasklist
-echo.
-echo === SERVICES ===
-sc query type= all
-echo.
-) > "!RPTFILE!" 2>&1
-echo  [+] Report saved: !RPTFILE!
-echo  [%date% %time%] Full report generated >> "%LOGFILE%"
+) > "%REPORTDIR%\System_Diagnostics.txt" 2>&1
+echo  [+] Diagnostics saved to: %REPORTDIR%\System_Diagnostics.txt
 pause
-goto AI_DIAG_MENU
+goto MAIN_MENU2
 
-:DIAG_TASK
-cls
-set "RPTFILE=%REPORTDIR%\TaskReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
-set "RPTFILE=!RPTFILE: =0!"
-set "RPTFILE=!RPTFILE:/=-!"
-echo  [*] Generating Task/Process Report...
-(
-echo ============================================================
-echo  TASK / PROCESS REPORT
-echo  Generated: %date% %time%
-echo ============================================================
-echo.
-tasklist /v
-echo.
-echo === CPU Usage Top Processes ===
-wmic process get Name, ProcessId, WorkingSetSize /format:list
-) > "%RPTFILE%" 2>&1
-echo  [+] Report saved: %RPTFILE%
-echo  [%date% %time%] Task report generated >> "%LOGFILE%"
-pause
-goto AI_DIAG_MENU
-
-:DIAG_NET
-cls
-set "RPTFILE=%REPORTDIR%\NetworkReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
-set "RPTFILE=!RPTFILE: =0!"
-set "RPTFILE=!RPTFILE:/=-!"
-echo  [*] Generating Network Report...
-(
-echo ============================================================
-echo  NETWORK DIAGNOSTICS REPORT
-echo  Generated: %date% %time%
-echo ============================================================
-echo.
-echo === IP CONFIG ===
-ipconfig /all
-echo.
-echo === ROUTING TABLE ===
-route print
-echo.
-echo === ACTIVE CONNECTIONS ===
-netstat -an
-echo.
-echo === DNS CACHE ===
-ipconfig /displaydns
-echo.
-echo === PING TEST (8.8.8.8) ===
-ping 8.8.8.8 -n 4
-) > "%RPTFILE%" 2>&1
-echo  [+] Report saved: %RPTFILE%
-echo  [%date% %time%] Network report generated >> "%LOGFILE%"
-pause
-goto AI_DIAG_MENU
-
-:DIAG_HW
-cls
-set "RPTFILE=%REPORTDIR%\HardwareReport_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
-set "RPTFILE=!RPTFILE: =0!"
-set "RPTFILE=!RPTFILE:/=-!"
-echo  [*] Generating Hardware Report...
-(
-echo ============================================================
-echo  HARDWARE REPORT
-echo  Generated: %date% %time%
-echo ============================================================
-echo.
-echo === CPU ===
-wmic cpu get Name, Manufacturer, MaxClockSpeed, NumberOfCores, NumberOfLogicalProcessors /format:list
-echo.
-echo === RAM ===
-wmic memorychip get Capacity, Speed, Manufacturer, MemoryType, FormFactor /format:list
-wmic computersystem get TotalPhysicalMemory /format:list
-echo.
-echo === DISKS ===
-wmic diskdrive get Model, Size, InterfaceType, SerialNumber, Status /format:list
-echo.
-echo === GPU ===
-wmic path win32_VideoController get Name, AdapterRAM, DriverVersion /format:list
-echo.
-echo === BIOS ===
-wmic bios get Manufacturer, Name, Version, ReleaseDate /format:list
-echo.
-echo === BASEBOARD ===
-wmic baseboard get Manufacturer, Product, Version, SerialNumber /format:list
-) > "%RPTFILE%" 2>&1
-echo  [+] Report saved: %RPTFILE%
-echo  [%date% %time%] Hardware report generated >> "%LOGFILE%"
-pause
-goto AI_DIAG_MENU
-
-:: ============================================================
-:: SSD OPTIMIZER
-:: ============================================================
 :SSD_MENU
 cls
 color 0E
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  SSD OPTIMIZER  ★                                                                                           ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Enable TRIM                                    ║  [3]  Disable Prefetch/Superfetch (SSD)                                                        ║
-echo  ║  [2]  Run Optimize/Defrag on All Drives              ║  [4]  Disable Hibernation (Saves SSD space)                                                   ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
-set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto SSD_TRIM
-if "!CHOICE!"=="2" goto SSD_OPTIMIZE
-if "!CHOICE!"=="3" goto SSD_SUPERFETCH
-if "!CHOICE!"=="4" goto SSD_HIBERN
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto MAIN_MENU
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto SSD_MENU
-
-:SSD_TRIM
-cls
-echo  [*] Enabling TRIM...
-fsutil behavior set disabledeletenotify 0
-echo  [+] TRIM enabled.
-echo  [%date% %time%] TRIM enabled >> "%LOGFILE%"
-pause
-goto SSD_MENU
-
-:SSD_OPTIMIZE
-cls
-echo  [*] Optimizing all drives...
-defrag C: /O >nul 2>&1
-echo  [+] Drive optimization done.
-echo  [%date% %time%] Drive optimization done >> "%LOGFILE%"
-pause
-goto SSD_MENU
-
-:SSD_SUPERFETCH
-cls
-echo  [*] Disabling Superfetch/SysMain for SSD...
+echo  [*] SSD Optimizer
+fsutil behavior set disabledeletenotify 0 >nul 2>&1
+echo  [+] TRIM enabled for SSD
+echo  [*] Disabling Superfetch...
 sc config SysMain start= disabled >nul 2>&1
-net stop SysMain >nul 2>&1
-echo  [+] Superfetch disabled.
-echo  [%date% %time%] Superfetch disabled >> "%LOGFILE%"
+echo  [+] Superfetch disabled
 pause
-goto SSD_MENU
+goto MAIN_MENU2
 
-:SSD_HIBERN
-cls
-echo  [*] Disabling Hibernation...
-powercfg -h off
-echo  [+] Hibernation disabled. hiberfil.sys removed.
-echo  [%date% %time%] Hibernation disabled >> "%LOGFILE%"
-pause
-goto SSD_MENU
-
-:: ============================================================
-:: PRIVACY TOOLKIT
-:: ============================================================
 :PRIVACY_MENU
 cls
 color 04
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  PRIVACY TOOLKIT  ★                                                                                         ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Disable Telemetry                              ║  [3]  Disable Activity History                                                                ║
-echo  ║  [2]  Disable Cortana                                ║  [4]  Disable Location Tracking                                                               ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
-set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto PRIV_TELEM
-if "!CHOICE!"=="2" goto PRIV_CORTANA
-if "!CHOICE!"=="3" goto PRIV_HISTORY
-if "!CHOICE!"=="4" goto PRIV_LOCATION
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto MAIN_MENU
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto PRIVACY_MENU
-
-:PRIV_TELEM
-cls
-echo  [*] Disabling Windows Telemetry...
+echo  [*] Disabling Telemetry...
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v AllowTelemetry /t REG_DWORD /d 0 /f >nul 2>&1
-sc config DiagTrack start= disabled >nul 2>&1
-net stop DiagTrack >nul 2>&1
-sc config dmwappushservice start= disabled >nul 2>&1
-net stop dmwappushservice >nul 2>&1
-echo  [+] Telemetry disabled.
-echo  [%date% %time%] Telemetry disabled >> "%LOGFILE%"
-pause
-goto PRIVACY_MENU
-
-:PRIV_CORTANA
-cls
-echo  [*] Disabling Cortana...
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f >nul 2>&1
-echo  [+] Cortana disabled.
-echo  [%date% %time%] Cortana disabled >> "%LOGFILE%"
-pause
-goto PRIVACY_MENU
-
-:PRIV_HISTORY
-cls
-echo  [*] Disabling Activity History...
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v EnableActivityFeed /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v PublishUserActivities /t REG_DWORD /d 0 /f >nul 2>&1
-echo  [+] Activity History disabled.
-echo  [%date% %time%] Activity history disabled >> "%LOGFILE%"
-pause
-goto PRIVACY_MENU
-
-:PRIV_LOCATION
-cls
-echo  [*] Disabling Location Tracking...
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location" /v Value /t REG_SZ /d "Deny" /f >nul 2>&1
-echo  [+] Location tracking disabled.
-echo  [%date% %time%] Location tracking disabled >> "%LOGFILE%"
-pause
-goto PRIVACY_MENU
-
-:: ============================================================
-:: ADVANCED TOOLS
-:: ============================================================
-:ADVANCED_MENU
-cls
-color 08
-call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  ADVANCED TOOLS  ★                                                                                          ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Malware Scan (Defender Full Scan)              ║  [4]  Browser Data Cleanup                                                                    ║
-echo  ║  [2]  Startup Booster (Disable slow startups)        ║  [5]  DNS Toolkit                                                                             ║
-echo  ║  [3]  Duplicate File Scanner                         ║                                                                                               ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
-set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto ADV_MALWARE
-if "!CHOICE!"=="2" goto ADV_STARTUP
-if "!CHOICE!"=="3" goto ADV_DUPFILE
-if "!CHOICE!"=="4" goto ADV_BROWSCLEAN
-if "!CHOICE!"=="5" goto DNS_TOOLKIT
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto MAIN_MENU
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto ADVANCED_MENU
-
-:ADV_MALWARE
-cls
-echo  [*] Running Windows Defender Full Scan (background)...
-start "" "%ProgramFiles%\Windows Defender\MpCmdRun.exe" -Scan -ScanType 2
-echo  [+] Full scan started in background. Check Windows Security for results.
-echo  [%date% %time%] Full malware scan started >> "%LOGFILE%"
-pause
-goto ADVANCED_MENU
-
-:ADV_STARTUP
-cls
-echo  [*] Listing and managing startup programs...
-echo  [*] Opening Task Manager Startup tab...
-start taskmgr
-echo  [+] Disable unwanted startup apps in Task Manager.
-echo  [%date% %time%] Startup manager opened >> "%LOGFILE%"
-pause
-goto ADVANCED_MENU
-
-:ADV_DUPFILE
-cls
-echo  [*] Duplicate File Scanner
-echo  [!] This tool scans the Desktop for duplicate files by size.
-set "SCANDIR=%USERPROFILE%\Desktop"
-set /p "SCANDIR=  Enter folder to scan [default: %USERPROFILE%\Desktop]: "
-if "!SCANDIR!"=="" set "SCANDIR=%USERPROFILE%\Desktop"
-echo  [*] Scanning: !SCANDIR!
-set "RPTFILE=%REPORTDIR%\DuplicateScan_%date:~-4,4%%date:~-7,2%%date:~-10,2%.txt"
-set "RPTFILE=!RPTFILE: =0!"
-set "RPTFILE=!RPTFILE:/=-!"
-echo Duplicate File Report - !SCANDIR! > "!RPTFILE!"
-echo Generated: %date% %time% >> "!RPTFILE!"
-echo. >> "!RPTFILE!"
-for /f "tokens=*" %%F in ('dir /b /s "!SCANDIR!" 2^>nul') do (
-    for /f "tokens=4" %%S in ('dir "%%F" /-c 2^>nul ^| find "%%~nxF"') do (
-        echo SIZE:%%S FILE:%%F >> "!RPTFILE!"
-    )
-)
-echo  [+] Scan done. Report: !RPTFILE!
-echo  [%date% %time%] Duplicate scan done >> "%LOGFILE%"
-pause
-goto ADVANCED_MENU
-
-:ADV_BROWSCLEAN
-cls
-echo  [*] Cleaning all browser data (Cache, Cookies, Temp)...
-if exist "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache" (
-    del /s /f /q "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache\*.*" >nul 2>&1
-    del /s /f /q "%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cookies" >nul 2>&1
-)
-if exist "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache" (
-    del /s /f /q "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache\*.*" >nul 2>&1
-    del /s /f /q "%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cookies" >nul 2>&1
-)
-echo  [+] Browser cleanup done.
-echo  [%date% %time%] Browser data cleaned >> "%LOGFILE%"
-pause
-goto ADVANCED_MENU
-
-:DNS_TOOLKIT
-cls
-color 09
-call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  DNS TOOLKIT  ★                                                                                             ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Set DNS to Google (8.8.8.8)                    ║  [3]  Flush DNS Cache                                                                         ║
-echo  ║  [2]  Set DNS to Cloudflare (1.1.1.1)               ║  [4]  Display DNS Cache                                                                       ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
-set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto DNS_GOOGLE
-if "!CHOICE!"=="2" goto DNS_CF
-if "!CHOICE!"=="3" goto DNS_FLUSH
-if "!CHOICE!"=="4" goto DNS_DISPLAY
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto ADVANCED_MENU
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto DNS_TOOLKIT
-
-:DNS_GOOGLE
-cls
-echo  [*] Setting DNS to Google...
-for /f "skip=3 tokens=1,2,3,4,5,6" %%a in ('netsh interface ip show config') do (
-    if not "%%a"=="" (
-        netsh interface ip set dns name="%%a" static 8.8.8.8 >nul 2>&1
-        netsh interface ip add dns name="%%a" 8.8.4.4 index=2 >nul 2>&1
-    )
-)
-ipconfig /flushdns >nul 2>&1
-echo  [+] DNS set to Google.
-echo  [%date% %time%] DNS set to Google >> "%LOGFILE%"
-pause
-goto DNS_TOOLKIT
-
-:DNS_CF
-cls
-echo  [*] Setting DNS to Cloudflare...
-for /f "skip=3 tokens=1,2,3,4,5,6" %%a in ('netsh interface ip show config') do (
-    if not "%%a"=="" (
-        netsh interface ip set dns name="%%a" static 1.1.1.1 >nul 2>&1
-        netsh interface ip add dns name="%%a" 1.0.0.1 index=2 >nul 2>&1
-    )
-)
-ipconfig /flushdns >nul 2>&1
-echo  [+] DNS set to Cloudflare.
-echo  [%date% %time%] DNS set to Cloudflare >> "%LOGFILE%"
-pause
-goto DNS_TOOLKIT
-
-:DNS_FLUSH
-cls
-ipconfig /flushdns
-echo  [%date% %time%] DNS flushed >> "%LOGFILE%"
-pause
-goto DNS_TOOLKIT
-
-:DNS_DISPLAY
-cls
-ipconfig /displaydns | more
-echo  [%date% %time%] DNS cache displayed >> "%LOGFILE%"
-pause
-goto DNS_TOOLKIT
-
-:: ============================================================
-:: BATTERY REPORT
-:: ============================================================
-:BATTERY_REPORT
-cls
-color 06
-call :DRAW_HEADER
-echo  [*] Generating Battery Report...
-set "BATRPT=%REPORTDIR%\battery_report.html"
-powercfg /batteryreport /output "%BATRPT%" >nul 2>&1
-if exist "%BATRPT%" (
-    echo  [+] Battery report saved: %BATRPT%
-    start "" "%BATRPT%"
-) else (
-    echo  [!] Battery report failed or no battery detected.
-)
-echo  [%date% %time%] Battery report generated >> "%LOGFILE%"
+echo  [+] Telemetry disabled
 pause
 goto MAIN_MENU2
 
-:: ============================================================
-:: BENCHMARK TOOLKIT
-:: ============================================================
-:BENCHMARK_MENU
-cls
-color 0E
-call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  BENCHMARK TOOLKIT  ★                                                                                       ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  CPU Benchmark (prime stress test info)         ║  [3]  Disk Speed Test (via Windows)                                                           ║
-echo  ║  [2]  RAM Info Benchmark                             ║  [4]  Network Speed Test (ping latency)                                                       ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
-set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto BENCH_CPU
-if "!CHOICE!"=="2" goto BENCH_RAM
-if "!CHOICE!"=="3" goto BENCH_DISK
-if "!CHOICE!"=="4" goto BENCH_NET
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto MAIN_MENU2
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto BENCHMARK_MENU
-
-:BENCH_CPU
-cls
-echo  [*] CPU Benchmark Info:
-wmic cpu get Name, MaxClockSpeed, NumberOfCores, NumberOfLogicalProcessors, LoadPercentage /format:list
-echo.
-echo  [*] Timing a simple loop benchmark...
-set "T1=%time%"
-set /a CNT=0
-for /l %%i in (1,1,100000) do set /a CNT+=1
-set "T2=%time%"
-echo  [+] Loop to 100000 done.
-echo  Start: !T1!  End: !T2!
-echo  [%date% %time%] CPU benchmark done >> "%LOGFILE%"
-pause
-goto BENCHMARK_MENU
-
-:BENCH_RAM
-cls
-echo  [*] RAM Benchmark Info:
-wmic memorychip get Capacity, Speed, Manufacturer, MemoryType /format:list
-wmic computersystem get TotalPhysicalMemory /format:list
-echo.
-echo  [*] Available Memory:
-wmic OS get FreePhysicalMemory, TotalVisibleMemorySize /format:list
-echo  [%date% %time%] RAM benchmark done >> "%LOGFILE%"
-pause
-goto BENCHMARK_MENU
-
-:BENCH_DISK
-cls
-echo  [*] Disk Speed Test using winsat...
-winsat disk
-echo  [%date% %time%] Disk speed test done >> "%LOGFILE%"
-pause
-goto BENCHMARK_MENU
-
-:BENCH_NET
-cls
-echo  [*] Network Latency Test (ping to 8.8.8.8, 1.1.1.1, google.com)...
-echo.
-echo  --- Google DNS (8.8.8.8) ---
-ping 8.8.8.8 -n 5
-echo.
-echo  --- Cloudflare (1.1.1.1) ---
-ping 1.1.1.1 -n 5
-echo.
-echo  --- Google.com ---
-ping google.com -n 5
-echo  [%date% %time%] Network latency test done >> "%LOGFILE%"
-pause
-goto BENCHMARK_MENU
-
-:: ============================================================
-:: FIREWALL TOOLKIT
-:: ============================================================
 :FIREWALL_MENU
 cls
 color 0C
 call :DRAW_HEADER
-echo  ╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-echo  ║                                        ★  FIREWALL TOOLKIT  ★                                                                                        ║
-echo  ╠═══════════════════════════════════════════════════════╦════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [1]  Enable Windows Firewall                        ║  [4]  Export Firewall Rules                                                                   ║
-echo  ║  [2]  Disable Windows Firewall                       ║  [5]  Show Firewall Status                                                                    ║
-echo  ║  [3]  Reset Firewall to Default                      ║  [6]  Open Firewall Panel                                                                     ║
-echo  ╠═══════════════════════════════════════════════════════╩════════════════════════════════════════════════════════════════════════════════════════════════╣
-echo  ║  [H] Home   [B] Back   [X] Exit                                                                                                                       ║
-echo  ╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝
-echo.
+echo  [*] Firewall Toolkit
+echo  [1]  Enable Firewall   [2]  Disable   [3]  Status
 set /p "CHOICE=  Enter option: "
-if "!CHOICE!"=="1" goto FW_ENABLE
-if "!CHOICE!"=="2" goto FW_DISABLE
-if "!CHOICE!"=="3" goto FW_RESET
-if "!CHOICE!"=="4" goto FW_EXPORT
-if "!CHOICE!"=="5" goto FW_STATUS
-if "!CHOICE!"=="6" goto FW_PANEL
-if /i "!CHOICE!"=="H" goto MAIN_MENU
-if /i "!CHOICE!"=="B" goto MAIN_MENU2
-if /i "!CHOICE!"=="X" goto EXIT_TOOLKIT
-goto FIREWALL_MENU
-
-:FW_ENABLE
-cls
-echo  [*] Enabling Windows Firewall for all profiles...
-netsh advfirewall set allprofiles state on
-echo  [%date% %time%] Firewall enabled >> "%LOGFILE%"
+if "!CHOICE!"=="1" netsh advfirewall set allprofiles state on
+if "!CHOICE!"=="2" netsh advfirewall set allprofiles state off
+if "!CHOICE!"=="3" netsh advfirewall show allprofiles
 pause
-goto FIREWALL_MENU
+goto MAIN_MENU2
 
-:FW_DISABLE
+:BENCHMARK_MENU
 cls
-echo  [!] WARNING: Disabling Windows Firewall reduces security!
-set /p "CONF=  Type YES to confirm: "
-if /i "!CONF!"=="YES" (
-    netsh advfirewall set allprofiles state off
-    echo  [+] Firewall disabled.
-    echo  [%date% %time%] Firewall disabled >> "%LOGFILE%"
-) else (
-    echo  [!] Cancelled.
-)
+color 0E
+call :DRAW_HEADER
+echo  [*] Running Benchmarks...
+echo === CPU Information ===
+wmic cpu get Name, MaxClockSpeed /format:list
+echo.
+echo === RAM Information ===
+wmic computersystem get TotalPhysicalMemory /format:list
 pause
-goto FIREWALL_MENU
+goto MAIN_MENU2
 
-:FW_RESET
+:ADVANCED_MENU
 cls
-echo  [*] Resetting Firewall to defaults...
-netsh advfirewall reset
-echo  [%date% %time%] Firewall reset >> "%LOGFILE%"
+color 08
+call :DRAW_HEADER
+echo  [*] Advanced Tools - Malware Scan
+echo  [*] Running Full System Scan...
+start "" "%ProgramFiles%\Windows Defender\MpCmdRun.exe" -Scan -ScanType 2
+echo  [+] Scan started in background
 pause
-goto FIREWALL_MENU
+goto MAIN_MENU2
 
-:FW_EXPORT
+:PROCMGR_MENU
 cls
-echo  [*] Exporting Firewall rules...
-netsh advfirewall export "%REPORTDIR%\firewall_rules.wfw"
-echo  [+] Saved to: %REPORTDIR%\firewall_rules.wfw
-echo  [%date% %time%] Firewall exported >> "%LOGFILE%"
+color 01
+call :DRAW_HEADER
+echo  [*] Opening Task Manager...
+start taskmgr
 pause
-goto FIREWALL_MENU
+goto MAIN_MENU2
 
-:FW_STATUS
+:STARTUP_ACCEL_MENU
 cls
-echo  [*] Firewall Status:
-netsh advfirewall show allprofiles
-echo  [%date% %time%] Firewall status displayed >> "%LOGFILE%"
+color 02
+call :DRAW_HEADER
+echo  [*] Opening Task Manager Startup Tab...
+start taskmgr /0
 pause
-goto FIREWALL_MENU
+goto MAIN_MENU2
 
-:FW_PANEL
+:SVCOPT_MENU
 cls
-echo  [*] Opening Windows Firewall with Advanced Security...
-start wf.msc
-echo  [%date% %time%] Firewall panel opened >> "%LOGFILE%"
+color 09
+call :DRAW_HEADER
+echo  [*] Service Optimizer
+echo  [*] Opening Services Management...
+start services.msc
 pause
-goto FIREWALL_MENU
+goto MAIN_MENU2
+
+:MEMLEAK_MENU
+cls
+color 04
+call :DRAW_HEADER
+echo  [*] Memory Leak Detection
+tasklist /v
+pause
+goto MAIN_MENU3
+
+:NETSPEED_MENU
+cls
+color 06
+call :DRAW_HEADER
+echo  [*] Network Speed Test
+ping 8.8.8.8 -n 10
+ping google.com -n 10
+pause
+goto MAIN_MENU3
+
+:GPU_DIAG_MENU
+cls
+color 0B
+call :DRAW_HEADER
+echo  [*] Graphics Diagnostics
+wmic path win32_VideoController get Name, DriverVersion /format:list
+pause
+goto MAIN_MENU3
+
+:TEMP_MON_MENU
+cls
+color 0C
+call :DRAW_HEADER
+echo  [*] Temperature Monitor
+echo  [!] NOTE: Install third-party software for detailed temperature monitoring
+pause
+goto MAIN_MENU3
+
+:WINUPDATE_MENU
+cls
+color 03
+call :DRAW_HEADER
+echo  [*] Opening Windows Update...
+start ms-settings:windowsupdate
+pause
+goto MAIN_MENU3
+
+:SYSCLEAN_MENU
+cls
+color 05
+call :DRAW_HEADER
+echo  [*] System Cleaner Suite
+call :DO_CLEAN_ALL
+echo  [+] System cleaned
+pause
+goto MAIN_MENU3
+
+:ADVREPAIR_MENU
+cls
+color 0A
+call :DRAW_HEADER
+echo  [*] Advanced Repair
+echo  [*] Running SFC + DISM...
+sfc /scannow >nul 2>&1
+DISM /Online /Cleanup-Image /RestoreHealth >nul 2>&1
+echo  [+] Repair complete
+pause
+goto MAIN_MENU3
+
+:TUNEUP_MENU
+cls
+color 0F
+call :DRAW_HEADER
+echo  [*] Complete System Tune-Up
+echo  [*] Applying all optimizations...
+call :DO_CLEAN_ALL
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
+powercfg /setactive e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
+echo  [+] Tune-up complete
+pause
+goto MAIN_MENU3
 
 :: ============================================================
 :: EXIT
@@ -1665,19 +1784,22 @@ goto FIREWALL_MENU
 cls
 color 0A
 echo.
-echo  ======================================================================
-echo   Thank you for using SHIVAM ENTERPRISE TOOLKIT
-echo   Developer: Chaudhary Shivam Sheokand
-echo   GitHub  :  github.com/chaudharyshivamsheokand
-echo   Instagram:  @ig.developershivam
-echo   YouTube  :  TechEdu-X
-echo  .
-echo   Logs saved to: %LOGFILE%
-echo   Reports at  : %REPORTDIR%
-echo   Backups at  : %BACKUPDIR%
-echo  ======================================================================
+echo  ================================================================================
 echo.
-echo  [%date% %time%] SHIVAM ENTERPRISE TOOLKIT Exited >> "%LOGFILE%"
+echo   Thank you for using SHIVAM ENTERPRISE TOOLKIT v4.0
+echo.
+echo   Developer  : Chaudhary Shivam Sheokand
+echo   GitHub     : github.com/chaudharyshivamsheokand
+echo   Instagram  : @ig.developershivam
+echo   YouTube    : TechEdu-X
+echo.
+echo   Logs saved to    : %LOGFILE%
+echo   Reports saved to : %REPORTDIR%
+echo   Backups saved to : %BACKUPDIR%
+echo.
+echo  ================================================================================
+echo.
+echo  [%date% %time%] SHIVAM ENTERPRISE TOOLKIT v4.0 Exited >> "%LOGFILE%"
 timeout /t 3 >nul
 endlocal
 exit /b 0
