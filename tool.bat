@@ -1,3 +1,4 @@
+@chcp 65001 >nul 2>&1
 @echo off
 :: ============================================================
 :: SHIVAM ENTERPRISE TOOLKIT
@@ -11,9 +12,6 @@
 
 :: --- Enable Delayed Expansion ---
 setlocal EnableDelayedExpansion
-
-:: --- UTF-8 Support ---
-chcp 65001 >nul 2>&1
 
 :: --- Set Console Size ---
 mode con: cols=160 lines=50
